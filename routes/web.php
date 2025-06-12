@@ -14,10 +14,10 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+});Route::get('password/reset', function () {
+    return view('auth.reset-password');
+})->name('reset-password');
+
+Route::fallback(function () {
+    return redirect('/login');
 });
-// Route::get('privacy-policy',function(){
-//     return view('privacy-policy');
-// })->name('privacy-policy');
-// Route::get('terms-of-service',function(){
-//     return view('terms-of-service');
-// })->name('terms-of-service');
