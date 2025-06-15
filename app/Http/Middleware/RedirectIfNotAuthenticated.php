@@ -9,12 +9,11 @@ class RedirectIfNotAuthenticated
 {
     public function handle($request, Closure $next)
     {
-        // Check if the request is a GET and user is not authenticated
-        if ($request->isMethod('GET') && !Auth::check()) {
-            // Exclude the login route and other public routes
-            if (!in_array($request->path(), ['login', 'register', 'password/reset'])) {
+        // Check if the  user is not authenticated
+        if (!Auth::check()) {
+            // Redirect to the login page
                 return redirect('/login');
-            }
+           
         }
 
         return $next($request);
