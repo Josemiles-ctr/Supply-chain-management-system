@@ -27,7 +27,7 @@
             <div class="flex-1 p-4 overflow-y-auto space-y-2 bg-gray-50">
                 @foreach($messages as $message)
                 <div class="flex {{$message->sender_id===Auth::id() ? 'justify-end' : 'justify-start'}} ">
-                    <div class="max-w-xs px-4 py-2 rounded-2xl shadow {{$message->sender_id===Auth::id() ? 'bg-gray-500 text-white' : 'bg-blue-600 text-white'}}">
+                    <div class="max-w-xs px-4 py-2 rounded-2xl shadow {{$message->sender_id===Auth::id() ? 'bg-blue-600 text-white' : 'bg-gray-200 text-grat-800'}}">
                         {{ $message->message }}
                     </div>
                 </div>

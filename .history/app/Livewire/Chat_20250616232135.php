@@ -15,7 +15,7 @@ class Chat extends Component
     public $messages;
     public function mount() 
     {
-        $this->vendors = User::whereNot('id', Auth::id())
+        $this->vendors = User::whereN('role', 'vendor')
             ->get();
         $this->selectedVendor = $this->vendors->first();
         $this->loadMessages();
@@ -46,7 +46,7 @@ class Chat extends Component
            
         })->orWhere(function($q){
             $q->where('sender_id', $this->selectedVendor->id)->where('receiver_id', Auth::id());
-        })->get();
+        })->latest()->get();
     }
     public function render()
     {

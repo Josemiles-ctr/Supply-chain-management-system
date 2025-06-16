@@ -15,14 +15,27 @@ class Chat extends Component
     public $messages;
     public function mount() 
     {
-        $this->vendors = User::whereNot('id', Auth::id())
+        $this->vendors = User::where('role', 'vendor')
             ->get();
         $this->selectedVendor = $this->vendors->first();
         $this->loadMessages();
        
 
     }
-    
+    public function loadMessages()
+    {
+        if ($this->selectedVendor) {
+            $this->messages = ChatMessage::where(function($query) {
+                $query->where('sender_id', Auth::id())
+                      ->orWhere('receiver_id', Auth::id());
+            })->where(function($query) {
+                $query->where('sender_id', $this->selectedVendor->id)
+                      ->orWhere('receiver_id', $this->selectedVendor->id);
+            })->get();
+        } else {
+            $this->messages = collect();
+        }
+    }
     public function submit(){
         if(!$this->newMessage) {
             return;
@@ -37,16 +50,6 @@ class Chat extends Component
     }
     public function selectVendor($id){
         $this->selectedVendor = User::find($id);
-        $this->loadMessages();
-    }
-    public function loadMessages()
-    {
-        $this->messages=ChatMessage::query()->where(function($q){
-            $q->where('sender_id', Auth::id())->where('receiver_id', $this->selectedVendor->id);
-           
-        })->orWhere(function($q){
-            $q->where('sender_id', $this->selectedVendor->id)->where('receiver_id', Auth::id());
-        })->get();
     }
     public function render()
     {

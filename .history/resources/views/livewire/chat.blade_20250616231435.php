@@ -5,7 +5,7 @@
 
     <div class="flex h-[550px] text-sm border rounded-xl shadow overflow-hidden bg-white">
         <div class="w-1/4 border-r bg-gray-50">
-            <div class="p-4 font-bold text-gray-700 border-b text-center text-lg">Present Users</div>
+            <div class="p-4 font-bold text-gray-700 border-b text-center text-lg">Vendors</div>
             <div class="divide-y">
                 @foreach($vendors as $vendor)
                 <div wire:click='selectVendor({{ $vendor->id }})' class="p-3 cursor-pointer hover:bg-blue-100 transition 
@@ -26,8 +26,8 @@
             <!-- Messages -->
             <div class="flex-1 p-4 overflow-y-auto space-y-2 bg-gray-50">
                 @foreach($messages as $message)
-                <div class="flex {{$message->sender_id===Auth::id() ? 'justify-end' : 'justify-start'}} ">
-                    <div class="max-w-xs px-4 py-2 rounded-2xl shadow {{$message->sender_id===Auth::id() ? 'bg-gray-500 text-white' : 'bg-blue-600 text-white'}}">
+                <div class="flex {{$sender_id===Auth::id}} justify-end">
+                    <div class="max-w-xs px-4 py-2 rounded-2xl shadow bg-blue-600 text-white">
                         {{ $message->message }}
                     </div>
                 </div>
