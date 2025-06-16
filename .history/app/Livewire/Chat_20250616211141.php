@@ -22,9 +22,7 @@ class Chat extends Component
         $this->messages=ChatMessage::query()->where(function($q){
             $q->where('sender_id', Auth::id())->where('receiver_id', $this->selectedVendor->id);
            
-        })->orWhere(function($q){
-            $q->where('sender_id', $this->selectedVendor->id)->where('receiver_id', Auth::id());
-        })->latest()->get();
+        })-
 
     }
     public function submit(){

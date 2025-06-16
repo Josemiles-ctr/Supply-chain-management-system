@@ -19,12 +19,7 @@ class Chat extends Component
             ->get();
         $this->selectedVendor = $this->vendors->first();
         
-        $this->messages=ChatMessage::query()->where(function($q){
-            $q->where('sender_id', Auth::id())->where('receiver_id', $this->selectedVendor->id);
-           
-        })->orWhere(function($q){
-            $q->where('sender_id', $this->selectedVendor->id)->where('receiver_id', Auth::id());
-        })->latest()->get();
+        $this->messages=ChatMessage::query()->where(fu)
 
     }
     public function submit(){

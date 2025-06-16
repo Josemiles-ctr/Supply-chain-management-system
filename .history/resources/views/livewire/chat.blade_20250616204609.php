@@ -5,11 +5,11 @@
 
     <div class="flex h-[550px] text-sm border rounded-xl shadow overflow-hidden bg-white">
         <div class="w-1/4 border-r bg-gray-50">
-            <div class="p-4 font-bold text-gray-700 border-b text-center text-lg">Vendors</div>
+            <div class="p-4 font-bold text-gray-700 border-b text-center">Vendors</div>
             <div class="divide-y">
                 @foreach($vendors as $vendor)
                 <div wire:click='selectVendor({{ $vendor->id }})' class="p-3 cursor-pointer hover:bg-blue-100 transition 
-                    {{ $selectedVendor->id === $vendor->id ? 'bg-blue-200' : '' }}">
+                    {{ $selectedVendor->id === $vendor->id ? 'bg-green-500 text' : '' }}">
                     <div class="text-gray-800">{{$vendor->name}}</div>
                     <div class="text-xs text-gray-500">{{$vendor->email}}</div>
                 </div>
@@ -33,12 +33,10 @@
             </div>
 
             <!-- Input -->
-            <form wire:submit="submit" class="p-4 border-t bg-white flex items-center gap-2">
-            @csrf
+            <form class="p-4 border-t bg-white flex items-center gap-2">
                 <input
                     type="text"
-                    wire:model='newMessage'
-                    class="flex-1 border border-gray-300 rounded-full px-4 py-2 text-sm focus:outline-none focus:ring focus:ring-blue-300 text-black"
+                    class="flex-1 border border-gray-300 rounded-full px-4 py-2 text-sm focus:outline-none focus:ring focus:ring-blue-300"
                     placeholder="Type your message..." />
                 <button type="submit"
                     class="bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-2 rounded-full transition">

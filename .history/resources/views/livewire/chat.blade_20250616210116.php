@@ -33,7 +33,7 @@
             </div>
 
             <!-- Input -->
-            <form wire:submit="submit" class="p-4 border-t bg-white flex items-center gap-2">
+            <form wi class="p-4 border-t bg-white flex items-center gap-2">
             @csrf
                 <input
                     type="text"

@@ -24,7 +24,7 @@ class Chat extends Component
            
         })->orWhere(function($q){
             $q->where('sender_id', $this->selectedVendor->id)->where('receiver_id', Auth::id());
-        })->latest()->get();
+        })->late->get();
 
     }
     public function submit(){

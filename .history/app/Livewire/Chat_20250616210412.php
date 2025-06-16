@@ -12,19 +12,11 @@ class Chat extends Component
     public $vendors;
     public $selectedVendor;
     public $newMessage;
-    public $messages;
     public function mount() 
     {
         $this->vendors = User::where('role', 'vendor')
             ->get();
         $this->selectedVendor = $this->vendors->first();
-        
-        $this->messages=ChatMessage::query()->where(function($q){
-            $q->where('sender_id', Auth::id())->where('receiver_id', $this->selectedVendor->id);
-           
-        })->orWhere(function($q){
-            $q->where('sender_id', $this->selectedVendor->id)->where('receiver_id', Auth::id());
-        })->latest()->get();
 
     }
     public function submit(){
@@ -36,7 +28,6 @@ class Chat extends Component
             'vendor_id' => $this->selectedVendor->id,
             'message' => $this->newMessage,
         ]);
-        $this->newMessage = '';
     }
     public function selectVendor($id){
         $this->selectedVendor = User::find($id);
