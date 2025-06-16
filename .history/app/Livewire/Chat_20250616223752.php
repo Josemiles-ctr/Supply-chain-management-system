@@ -32,8 +32,8 @@ class Chat extends Component
             return;
         }
         ChatMessage::create([
-            'sender_id' => Auth::id(),
-            'receiver_id' => $this->selectedVendor->id,
+            '_id' => Auth::id(),
+            'vendor_id' => $this->selectedVendor->id,
             'message' => $this->newMessage,
         ]);
         $this->newMessage = '';

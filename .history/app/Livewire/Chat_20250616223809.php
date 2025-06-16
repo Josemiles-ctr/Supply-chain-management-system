@@ -33,7 +33,7 @@ class Chat extends Component
         }
         ChatMessage::create([
             'sender_id' => Auth::id(),
-            'receiver_id' => $this->selectedVendor->id,
+            'recei_id' => $this->selectedVendor->id,
             'message' => $this->newMessage,
         ]);
         $this->newMessage = '';
