@@ -31,6 +31,9 @@
             <!-- Header -->
             <div class="p-4 border-b bg-gray-50 flex items-center gap-4">
                 <span class="inline-flex items-center justify-center rounded-full border-2 border-[#84c1dd] bg-white shadow shrink-0" style="aspect-ratio:1/1; width:3.5rem; min-width:3.5rem; max-width:100%;">
+                    @if($selectedVendor && $selectedVendor->avatar)
+                        <img src="{{ $selectedVendor->avatar }}" alt="{{ $selectedVendor->name }}" class="w-full h-full object-cover rounded-full" />
+                    @else
                         <svg class="w-full h-full p-2 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
                         </svg>
@@ -49,18 +52,13 @@
                     <div class="max-w-xs px-4 py-2 rounded-2xl shadow {{$message->sender_id===Auth::id() ? 'bg-gray-500 text-white' : 'bg-blue-600 text-white'}}">
                         {{ $message->message }}  
                         @if($message->sender_id === Auth::id())
-                            <span class="text-green-500 flex items-end justify-end gap-1 mt-1 w-full">
-                                <span class="ml-auto flex items-end gap-1">
-                                    <span>(You)</span>
-                                    <span class="flex flex-row items-end gap-0.5">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="inline w-3 h-3 ml-1">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-                                        </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="inline w-3 h-3 -ml-1">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-                                        </svg>
-                                    </span>
-                                </span>
+                            <span class="text-green-500 flex items-center gap-1">(You)
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="inline w-3 h-3 ml-1">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="inline w-3 h-3 -ml-1">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                                </svg>
                             </span>
                         @elseif($message->receiver_id === $selectedVendor->id)
                             @php

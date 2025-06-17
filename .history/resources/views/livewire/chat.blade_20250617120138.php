@@ -49,18 +49,13 @@
                     <div class="max-w-xs px-4 py-2 rounded-2xl shadow {{$message->sender_id===Auth::id() ? 'bg-gray-500 text-white' : 'bg-blue-600 text-white'}}">
                         {{ $message->message }}  
                         @if($message->sender_id === Auth::id())
-                            <span class="text-green-500 flex items-end justify-end gap-1 mt-1 w-full">
-                                <span class="ml-auto flex items-end gap-1">
-                                    <span>(You)</span>
-                                    <span class="flex flex-row items-end gap-0.5">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="inline w-3 h-3 ml-1">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-                                        </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="inline w-3 h-3 -ml-1">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-                                        </svg>
-                                    </span>
-                                </span>
+                            <span class="text-green-500 flex items-center gap-1">(You)
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="inline w-3 h-3 ml-1">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="inline w-3 h-3 -ml-1">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                                </svg>
                             </span>
                         @elseif($message->receiver_id === $selectedVendor->id)
                             @php
