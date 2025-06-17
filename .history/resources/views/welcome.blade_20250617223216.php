@@ -5,17 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Welcome</title>
-        <script>
-            // Enable dark mode by default if user prefers dark or previously selected dark
-            if (
-            localStorage.theme === 'dark' ||
-            (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-            ) {
-            document.documentElement.classList.add('dark');
-            } else {
-            document.documentElement.classList.remove('dark');
-            }
-        </script>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -80,7 +69,7 @@
             <div class="w-full max-w-4xl flex flex-col-reverse lg:flex-row gap-6">
                 <!-- Content card -->
                 <div class="flex-1 p-6 lg:p-10 bg-light-card dark:bg-dark-card rounded-lg shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d]">
-                    1
+                    <P></P>
                 </div>
                 
                 <!-- Image/illustration placeholder -->
@@ -88,7 +77,7 @@
                     <!-- You can replace this with your own illustration -->
                     <div class="absolute inset-0 flex items-center justify-center">
                         <div class="text-4xl font-bold text-gray-700 dark:text-gray-300 opacity-30">
-                            G-20
+                            Your Illustration Here
                         </div>
                     </div>
                     <div class="absolute inset-0 rounded-lg shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d]"></div>

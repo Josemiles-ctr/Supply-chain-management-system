@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
     <head>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         @include('partials.head') 
     </head>
     <body class="min-h-screen bg-white dark:bg-zinc-800">

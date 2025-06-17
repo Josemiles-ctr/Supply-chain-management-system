@@ -1,11 +1,10 @@
 <?php
 
-use App\Livewire\Chat;
-use App\Livewire\Analytics;
-use App\Livewire\Settings\Profile;
-use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Appearance;
+use App\Livewire\Settings\Password;
+use App\Livewire\Settings\Profile;
 use Illuminate\Support\Facades\Route;
+use App\Livewire\Chat;
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,7 +21,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('settings/password', Password::class)->name('settings.password');
     Route::get('settings/appearance', Appearance::class)->name('settings.appearance');
     Route::get('chat', Chat::class)->name('chat');
-    Route::get('analytics', Analytics::class)->name('analytics');
+    Route::get('ana')
 });
 
 require __DIR__.'/auth.php';

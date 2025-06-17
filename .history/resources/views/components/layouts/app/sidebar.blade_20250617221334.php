@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
     <head>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         @include('partials.head') 
     </head>
     <body class="min-h-screen bg-white dark:bg-zinc-800">
@@ -17,7 +16,7 @@
                 <flux:navlist.group :heading="__('Actions')" class="grid">
                     <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
                     <flux:navlist.item icon="chat-bubble-oval-left-ellipsis" :href="route('chat')" :current="request()->routeIs('chat')" wire:navigate>{{ __('Chat') }}</flux:navlist.item>
-                    <flux:navlist.item icon="chart-bar" :href="route('analytics')" :current="request()->routeIs('analytics')" wire:navigate>{{ __('Analytics') }}</flux:navlist.item>
+                    
 
                 </flux:navlist.group>
             </flux:navlist>

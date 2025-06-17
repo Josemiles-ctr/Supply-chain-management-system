@@ -77,7 +77,7 @@
 
         <!-- Main content -->
         <main class="flex-grow flex items-center justify-center p-6 lg:p-8">
-            <div class="w-full max-w-4xl flex flex-col-reverse lg:flex-row gap-6">
+            <div class="w-full max-w-4xl flex flex-col-reverse  lg:flex-row gap-6">
                 <!-- Content card -->
                 <div class="flex-1 p-6 lg:p-10 bg-light-card dark:bg-dark-card rounded-lg shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d]">
                     1

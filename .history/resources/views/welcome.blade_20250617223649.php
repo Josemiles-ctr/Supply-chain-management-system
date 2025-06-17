@@ -6,16 +6,6 @@
 
         <title>Welcome</title>
         <script>
-            // Enable dark mode by default if user prefers dark or previously selected dark
-            if (
-            localStorage.theme === 'dark' ||
-            (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-            ) {
-            document.documentElement.classList.add('dark');
-            } else {
-            document.documentElement.classList.remove('dark');
-            }
-        </script>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
