@@ -57,8 +57,21 @@
                 
                 <nav class="flex items-center gap-4">
                     @auth
+<<<<<<< HEAD
                         <a href="{{ url('/dashboard') }}" class="px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
                             Dashboard
+=======
+<<<<<<< HEAD
+                        <a
+                            href="{{ url('/dashboard') }}"
+                            class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"
+                        >
+                            Dashboard.
+=======
+                        <a href="{{ url('/dashboard') }}" class="px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                            Dashboard
+>>>>>>> 1bd70141011e29062a8c54d473d16a691184282e
+>>>>>>> fc714da2caa69b0bc051d4c78b90bccd1cbf4789
                         </a>
                     @else
                         <a href="{{ route('login') }}" class="px-4 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition">
