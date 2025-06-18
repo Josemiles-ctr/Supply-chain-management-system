@@ -1,8 +1,10 @@
 <?php
 
-use App\Livewire\Settings\Appearance;
-use App\Livewire\Settings\Password;
+use App\Livewire\Chat;
+use App\Livewire\Analytics;
 use App\Livewire\Settings\Profile;
+use App\Livewire\Settings\Password;
+use App\Livewire\Settings\Appearance;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InventoryController;
 
@@ -20,6 +22,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('settings/profile', Profile::class)->name('settings.profile');
     Route::get('settings/password', Password::class)->name('settings.password');
     Route::get('settings/appearance', Appearance::class)->name('settings.appearance');
+    Route::get('chat', Chat::class)->name('chat');
+    Route::get('analytics', Analytics::class)->name('analytics');
     
 Route::get('/inventory/dashboard', [InventoryController::class, 'dashboard'])->name('inventory.dashboard');
 });

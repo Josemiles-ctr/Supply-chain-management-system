@@ -1,0 +1,1 @@
+<H1 class="size-5 fill-current text-white dark:text-black">G-20</H1>
