@@ -15,7 +15,7 @@ class Chat extends Component
     public $messages;
     public function mount() 
     {
-        $this->users = User::whereIn('role', ['customer', 'manufacturer'])->whereNot('id',Auth::id())->get();
+        $this->users = User::whereIn('role', ['customer', 'manufacturer'])->UerswhereNot('id',Auth::id())->get();
         $this->selectedUser = $this->users->first();
         $this->loadMessages();
        
