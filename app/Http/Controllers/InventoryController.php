@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Inventory;
 use App\Models\Product;
 use Illuminate\Http\Request;
-
-
 
 class InventoryController extends Controller
 {
@@ -75,20 +74,33 @@ class InventoryController extends Controller
 
         return response()->json([
             'message' => 'Reorder triggered for product: ' . $inventory->product->name,
-            ]);
+        ]);
     }
-    
-//
 
-public function dashboard()
-{
-    $productsCount = \App\Models\Product::count();
-    $totalStock = \App\Models\Product::all()->sum(fn($p) => $p->currentStock());
-    $stockValue = \App\Models\Product::all()->sum(fn($p) => $p->currentStock() * $p->price);
-    $recentProducts = \App\Models\Product::latest()->take(5)->get();
+    // Inventory dashboard for default users
+    public function dashboard()
+    {
+        $productsCount = Product::count();
+        $totalStock = Product::all()->sum(fn($p) => method_exists($p, 'currentStock') ? $p->currentStock() : 0);
+        $stockValue = Product::all()->sum(fn($p) => method_exists($p, 'currentStock') ? $p->currentStock() * $p->price : 0);
+        $recentProducts = Product::latest()->take(5)->get();
 
-    return view('inventory.dashboard', compact('productsCount', 'totalStock', 'stockValue', 'recentProducts'));
-}
+        return view('inventory.dashboard', compact('productsCount', 'totalStock', 'stockValue', 'recentProducts'));
+    }
 
-// ...existing code...
+    // Inventory dashboard for customers
+    public function customerInventory()
+    {
+        $customer = auth('customer')->user();
+        // Customize as needed for customer-specific inventory
+        return view('inventory.customer_dashboard', compact('customer'));
+    }
+
+    // Inventory dashboard for vendors
+    public function vendorInventory()
+    {
+        $vendor = auth('vendor')->user();
+        // Customize as needed for vendor-specific inventory
+        return view('inventory.vendor_dashboard', compact('vendor'));
+    }
 }
