@@ -34,7 +34,7 @@ class Chat extends Component
         $this->messages->push($message);
         $this->newMessage = '';
     }
-    public function selectUser($id){
+    public function selectU($id){
         $this->selectedUser = User::find($id);
         $this->loadMessages();
     }

@@ -11,7 +11,7 @@
             {{-- <a href="{{ route('dashboard') }}" class="me-5 flex items-center space-x-2 rtl:space-x-reverse" wire:navigate>
                 <x-app-logo />
             </a> --}}
-            <h3>Vendors Dashboard</h3>
+            <h3> Dashboard</h3>
 
             <flux:navlist variant="outline">
                 <flux:navlist.group :heading="__('Actions')" class="grid">

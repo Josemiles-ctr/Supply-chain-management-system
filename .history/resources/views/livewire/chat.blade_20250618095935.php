@@ -23,12 +23,10 @@
                         </div>
                     </div>
                     
-                </div>
-                <div class="w-full flex justify-center">
-                    <span class="text-xs font-semibold px-2 py-0.5 rounded-full shadow-sm
-                        {{ $user->role === 'customer' ? 'bg-green-100 text-green-500' : ($user->role === 'manufacturer' ? 'bg-red-500 text-white' : 'bg-blue-100 text-blue-700') }}">
-                        {{ ucfirst($user->role) }}
-                    </span>
+                        <span class="inline-block text-xs font-semibold px-2 py-0.5 rounded-full shadow-sm
+                            {{ $user->role === 'customer' ? 'bg-green-100 text-green-700' : ($user->role === 'manufacturer' ? 'bg-red-500 text-white' : 'bg-blue-100 text-blue-700') }}">
+                            {{ ucfirst($user->role) }}
+                        </span>
                 </div>
                 </div>
                 @endforeach

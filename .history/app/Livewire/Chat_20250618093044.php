@@ -34,7 +34,7 @@ class Chat extends Component
         $this->messages->push($message);
         $this->newMessage = '';
     }
-    public function selectUser($id){
+    public function select($id){
         $this->selectedUser = User::find($id);
         $this->loadMessages();
     }
@@ -52,4 +52,3 @@ class Chat extends Component
         return view('livewire.chat');
     }
 }
-   

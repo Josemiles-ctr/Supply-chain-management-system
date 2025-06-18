@@ -10,13 +10,15 @@ use Illuminate\Support\Facades\Auth;
 class Chat extends Component
 {
     public $users;
-    public $selectedUser;
+    public $selectedVendor;
     public $newMessage;
     public $messages;
     public function mount() 
     {
-        $this->users = User::whereIn('role', ['customer', 'manufacturer'])->get();
-        $this->selectedUser = $this->users->first();
+        $this->users = User::where('role', 'customer')
+            ->orWhere('role', 'manufacturer')
+            ->get();
+        $this->selectedVendor = $this->users->first();
         $this->loadMessages();
        
 
@@ -28,23 +30,23 @@ class Chat extends Component
         }
        $message= ChatMessage::create([
             'sender_id' => Auth::id(),
-            'receiver_id' => $this->selectedUser->id,
+            'receiver_id' => $this->selectedVendor->id,
             'message' => $this->newMessage,
         ]);
         $this->messages->push($message);
         $this->newMessage = '';
     }
-    public function selectUser($id){
-        $this->selectedUser = User::find($id);
+    public function selectVendor($id){
+        $this->selectedVendor = User::find($id);
         $this->loadMessages();
     }
     public function loadMessages()
     {
         $this->messages=ChatMessage::query()->where(function($q){
-            $q->where('sender_id', Auth::id())->where('receiver_id', $this->selectedUser->id);
+            $q->where('sender_id', Auth::id())->where('receiver_id', $this->selectedVendor->id);
            
         })->orWhere(function($q){
-            $q->where('sender_id', $this->selectedUser->id)->where('receiver_id', Auth::id());
+            $q->where('sender_id', $this->selectedVendor->id)->where('receiver_id', Auth::id());
         })->get();
     }
     public function render()
@@ -52,4 +54,3 @@ class Chat extends Component
         return view('livewire.chat');
     }
 }
-   
