@@ -1,19 +1,12 @@
 <?php
 
-<<<<<<< HEAD
-=======
 use App\Livewire\Chat;
 use App\Livewire\Analytics;
 use App\Livewire\Settings\Profile;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Appearance;
->>>>>>> 474feefdcda2e483bce19c8052d93b643feeca61
 use Illuminate\Support\Facades\Route;
-Route::middleware(['auth'])->group(function(){
-    Route::get('/orders', function(){
-        return view('orders.index');
-    })->name('orders.index');
-});
+use App\Http\Controllers\InventoryController;
 
 Route::view('/', 'welcome');
 
