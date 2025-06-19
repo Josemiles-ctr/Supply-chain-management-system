@@ -3,7 +3,6 @@
 use App\Livewire\Chat;
 use App\Livewire\Analytics;
 use App\Livewire\PlaceOrder;
-use App\Livewire\ManageInventory;
 use App\Livewire\Settings\Profile;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Appearance;

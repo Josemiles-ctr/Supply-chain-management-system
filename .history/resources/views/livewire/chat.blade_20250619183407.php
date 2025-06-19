@@ -1,4 +1,4 @@
-<x-layouts.dashboard-component-heading
+<x-dashboard-component-heading
     title="Chats And Messages"
     description="Manage your chats and messages"
 >
@@ -104,5 +104,5 @@
             </form>
         </div>
     </div>
-</x-layouts.dashboard-component-heading>
+</>
 

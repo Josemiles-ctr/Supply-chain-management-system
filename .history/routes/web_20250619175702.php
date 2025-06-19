@@ -3,7 +3,6 @@
 use App\Livewire\Chat;
 use App\Livewire\Analytics;
 use App\Livewire\PlaceOrder;
-use App\Livewire\ManageInventory;
 use App\Livewire\Settings\Profile;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Appearance;
@@ -27,6 +26,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard/chat', Chat::class)->name('chat');
     Route::get('/dashboard/analytics', Analytics::class)->name('analytics');
     Route::get('/dashboard/place-order', PlaceOrder::class)->name('place-order');
-    Route::get('/dashboard/inventory', ManageInventory::class)->name('inventory');
+    Route::get('/dashboard/inventory', [InventoryController::class, 'index'])->name('inventory.index');
 });
 require __DIR__.'/auth.php';

@@ -1,7 +1,8 @@
-<x-layouts.dashboard-component-heading
-    title="Chats And Messages"
-    description="Manage your chats and messages"
->
+<div class="relative mb-6 w-full">
+    <flux:heading size="xl" level="1">{{ __('Chats And Messages') }}</flux:heading>
+    <flux:subheading size="lg" class="mb-6">{{ __('Manage your chats and messages') }}</flux:subheading>
+    <flux:separator variant="subtle" />
+
     <div class="flex h-[550px] text-sm border rounded-xl shadow overflow-hidden bg-green-200">
         <div class="w-1/4 border-r bg-gray-50 flex flex-col">
             <div class="p-4 font-bold text-gray-700 border-b text-center text-lg">Chats</div>
@@ -104,5 +105,5 @@
             </form>
         </div>
     </div>
-</x-layouts.dashboard-component-heading>
+</dash>
 
