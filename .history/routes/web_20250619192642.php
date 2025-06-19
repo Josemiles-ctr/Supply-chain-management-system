@@ -12,7 +12,7 @@ use App\Http\Controllers\InventoryController;
 
 Route::get('/', function () {
     return view('getstarted');
-})->name('getstarted');
+})->name('getstr');
 
 
 Route::get('/welcome', function () {

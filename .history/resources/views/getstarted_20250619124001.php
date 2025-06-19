@@ -57,9 +57,22 @@
                 
                 <nav class="flex items-center gap-4">
                     @auth
+<<<<<<< HEAD
                         <a href="{{ url('/dashboard') }}" class="px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
                             Dashboard
-
+=======
+<<<<<<< HEAD
+                        <a
+                            href="{{ url('/dashboard') }}"
+                            class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"
+                        >
+                            Dashboard.
+=======
+                        <a href="{{ url('/dashboard') }}" class="px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                            Dashboard
+>>>>>>> 1bd70141011e29062a8c54d473d16a691184282e
+>>>>>>> fc714da2caa69b0bc051d4c78b90bccd1cbf4789
+                        </a>
                     @else
                         <a href="{{ route('login') }}" class="px-4 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition">
                             Log in
@@ -79,8 +92,8 @@
         <main class="flex-grow flex items-center justify-center p-6 lg:p-8">
             <div class="w-full max-w-4xl flex flex-col-reverse lg:flex-row gap-6">
                 <!-- Content card -->
-                <div class="flex-1 p-6 lg:p-10 bg-light-card dark:bg-dark-card rounded-lg shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d] flex items-center justify-center">
-                    <span class="text-4xl font-bold text-gray-700 dark:text-gray-300 opacity-30">G-20</span>
+                <div class="flex-1 p-6 text-4xl font-bold text-gray-700 dark:text-gray-300 opacity-30 lg:p-10 bg-light-card dark:bg-dark-card rounded-lg shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d]">
+                    G-20
                 </div>
                 
                 <!-- Image/illustration placeholder -->

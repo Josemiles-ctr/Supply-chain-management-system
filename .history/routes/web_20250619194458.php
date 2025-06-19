@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Route::get('/welcome', function () {
     return view('welcome');
-})->name('home');
+})->name('wel');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])

@@ -11,8 +11,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InventoryController;
 
 Route::get('/', function () {
-    return view('getstarted');
-})->name('getstarted');
+    return view('getstart');
+})->name('home');
 
 
 Route::get('/welcome', function () {

@@ -10,11 +10,6 @@ use App\Livewire\Settings\Appearance;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InventoryController;
 
-Route::get('/', function () {
-    return view('getstarted');
-})->name('getstarted');
-
-
 Route::get('/welcome', function () {
     return view('welcome');
 })->name('home');
