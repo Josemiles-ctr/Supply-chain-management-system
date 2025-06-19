@@ -23,8 +23,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('settings/profile', Profile::class)->name('settings.profile');
     Route::get('settings/password', Password::class)->name('settings.password');
     Route::get('settings/appearance', Appearance::class)->name('settings.appearance');
+<<<<<<< HEAD
     Route::get('/dashboard/chat', Chat::class)->name('chat');
     Route::get('/dashboard/analytics', Analytics::class)->name('analytics');
     Route::get('/dashboard/place-order', PlaceOrder::class)->name('place-order');
-});
+=======
+    Route::get('chat', Chat::class)->name('chat');
+    Route::get('analytics', Analytics::class)->name('analytics');
+    
+Route::get('/inventory/dashboard', [InventoryController::class, 'dashboard'])->nam
 require __DIR__.'/auth.php';

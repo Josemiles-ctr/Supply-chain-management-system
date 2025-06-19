@@ -26,5 +26,4 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard/chat', Chat::class)->name('chat');
     Route::get('/dashboard/analytics', Analytics::class)->name('analytics');
     Route::get('/dashboard/place-order', PlaceOrder::class)->name('place-order');
-});
 require __DIR__.'/auth.php';
