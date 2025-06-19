@@ -11,13 +11,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InventoryController;
 
 Route::get('/', function () {
-    return view('getstarted');
-})->name('getstarted');
+    return view('getst');
+})->name('home');
 
 
 Route::get('/welcome', function () {
     return view('welcome');
-})->name('welcome');
+})->name('home');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])

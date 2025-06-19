@@ -12,12 +12,12 @@ use App\Http\Controllers\InventoryController;
 
 Route::get('/', function () {
     return view('getstarted');
-})->name('getstarted');
+})->name('getstr');
 
 
 Route::get('/welcome', function () {
     return view('welcome');
-})->name('welcome');
+})->name('home');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
