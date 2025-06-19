@@ -11,7 +11,6 @@
 
             <flux:navlist variant="outline">
                 <flux:navlist.group :heading="__('Actions')" class="grid">
-                    <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
                     @if(Auth::User()->role=='manufacturer' || Auth::User()->role=='supplier')
                     <flux:navlist.item icon="chart-bar" :href="route('analytics')" :current="request()->routeIs('analytics')" wire:navigate>{{ __('Analytics') }}</flux:navlist.item>
                     @endif
