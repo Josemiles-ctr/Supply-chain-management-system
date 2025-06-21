@@ -16,18 +16,12 @@ class Chat extends Component
     public function mount() 
     {   if(Auth::User()->role =='customer' || Auth::User()->role =='vendor' || Auth::User()->role =='supplier'){
         
-        $this->users = User::where('role', 'manufacturer')->whereNot('id', Auth::id())->get() ?? [];
+        $this->users = User::where('role', 'manufacturer')->whereNot('id', Auth::id())->get();
     } else{
-        $this->users=User::whereNot('role', 'manufacturer')->get() ?? [];
+        $this->users=User::whereNot('role', 'manufacturer')->get() || [];
     }
-      if($this->users->isEmpty()) {
-            $this->selectedUser = null;
-            
-        }
-        else{
-            $this->selectedUser = $this->users->first() ?? null;
-            $this->loadMessages();
-        }
+        $this->selectedUser = $this->users->first();
+        $this->loadMessages();
        
 
     }

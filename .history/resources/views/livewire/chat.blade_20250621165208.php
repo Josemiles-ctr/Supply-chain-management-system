@@ -6,6 +6,7 @@
         <div class="w-1/4 border-r bg-gray-50 flex flex-col">
             <div class="p-4 font-bold text-gray-700 border-b text-center text-lg">Chats</div>
             <div class="divide-y flex-1 overflow-y-auto">
+                
             @if($users->count() > 0)
                 @foreach($users as $user)
                 <div wire:click='selectUser({{ $user->id }})' class="p-3 cursor-pointer hover:bg-blue-100 transition 
@@ -40,10 +41,6 @@
                </div>
                </div>
                @endforeach
-            @else
-                <div class="p-4 text-center text-gray-500">
-                    No users found. Start a conversation!
-                </div>
             @endif
             </div>
         </div>

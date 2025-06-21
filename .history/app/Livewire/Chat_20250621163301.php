@@ -25,6 +25,7 @@ class Chat extends Component
             
         }
         else{
+            
             $this->selectedUser = $this->users->first() ?? null;
             $this->loadMessages();
         }

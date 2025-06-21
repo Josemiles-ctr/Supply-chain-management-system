@@ -22,12 +22,11 @@ class Chat extends Component
     }
       if($this->users->isEmpty()) {
             $this->selectedUser = null;
-            
+            $this->messages = collect();
+            return;
         }
-        else{
-            $this->selectedUser = $this->users->first() ?? null;
-            $this->loadMessages();
-        }
+        $this->selectedUser = $this->users->first() ?? null;
+        $this->loadMessages();
        
 
     }

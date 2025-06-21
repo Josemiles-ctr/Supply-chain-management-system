@@ -40,10 +40,6 @@
                </div>
                </div>
                @endforeach
-            @else
-                <div class="p-4 text-center text-gray-500">
-                    No users found. Start a conversation!
-                </div>
             @endif
             </div>
         </div>
@@ -64,7 +60,7 @@
 
             <!-- Messages -->
             <div class="flex-1 p-4 overflow-y-auto space-y-2 bg-gray-50">
-            @if(empty($messages))
+            @if($messages->count() === 0)
                 <div class="text-center text-gray-500 mt-4">
                     No messages yet. Start the conversation!
                 </div>
@@ -98,7 +94,7 @@
                     </div>
                 </div>
                 @endforeach
-            @endif
+                
             </div>
 
             <!-- Input -->

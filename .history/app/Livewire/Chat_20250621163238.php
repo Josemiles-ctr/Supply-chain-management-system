@@ -24,10 +24,8 @@ class Chat extends Component
             $this->selectedUser = null;
             
         }
-        else{
-            $this->selectedUser = $this->users->first() ?? null;
-            $this->loadMessages();
-        }
+        $this->selectedUser = $this->users->first() ?? null;
+        $this->loadMessages();
        
 
     }

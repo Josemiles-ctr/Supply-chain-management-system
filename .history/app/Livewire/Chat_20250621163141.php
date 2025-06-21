@@ -20,14 +20,8 @@ class Chat extends Component
     } else{
         $this->users=User::whereNot('role', 'manufacturer')->get() ?? [];
     }
-      if($this->users->isEmpty()) {
-            $this->selectedUser = null;
-            
-        }
-        else{
-            $this->selectedUser = $this->users->first() ?? null;
-            $this->loadMessages();
-        }
+        $this->selectedUser = $this->users->first() ?? null;
+        $this->loadMessages();
        
 
     }
