@@ -18,7 +18,7 @@ class Chat extends Component
         
         $this->users = User::where('role', 'manufacturer')->whereNot('id', Auth::id())->get();
     } else{
-        $this->users=User::whereNot('role', 'manufacturer');
+        $this->users=User::whereNot('role', 'manufacturer')->whereNot('id',Auth::id())->get();
     }
         $this->selectedUser = $this->users->first();
         $this->loadMessages();

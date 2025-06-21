@@ -17,6 +17,7 @@ return new class extends Migration
             $table->decimal('price', 10, 2);
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('vendor_id');
+            $table->foreign('order_id')->constrained(),
             $table->unsignedBigInteger('inventory_id');
             $table->timestamps();
 
