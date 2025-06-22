@@ -14,15 +14,17 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('color')->nullable();
+            $table->enum('size', ['small', 'medium', 'large'])->default('medium');
             $table->decimal('price', 10, 2);
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('vendor_id');
             $table->unsignedBigInteger('inventory_id');
             $table->timestamps();
 
-            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
-            $table->foreign('vendor_id')->references('id')->on('vendor')->onDelete('cascade');
-            $table->foreign('inventory_id')->references('id')->on('inventory')->onDelete('cascade');
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('set null');
+            $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('set null');
+            $table->foreign('inventory_id')->references('id')->on('inventories')->onDelete('set null');
         });
     }
 
