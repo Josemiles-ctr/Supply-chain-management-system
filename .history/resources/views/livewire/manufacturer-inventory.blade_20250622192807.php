@@ -99,70 +99,62 @@
 
   </div>
 
- 
-
- <!-- Modal Box -->
-<div 
-<!-- Fullscreen Modal Container -->
+  <!-- Modal Overlay and Box -->
+  <!-- Modal Box -->
 <div 
   x-show="open === 'openedit'"
   x-transition:enter="transition ease-out duration-300"
-  x-transition:enter-start="opacity-0 scale-95"
+  x-transition:enter-start="opacity-0 scale-90"
   x-transition:enter-end="opacity-100 scale-100"
   x-transition:leave="transition ease-in duration-200"
   x-transition:leave-start="opacity-100 scale-100"
-  x-transition:leave-end="opacity-0 scale-95"
-  class="fixed inset-0 z-[9999] flex items-center justify-center"
-  style="backdrop-filter: blur(2px);"
+  x-transition:leave-end="opacity-0 scale-90"
+  class="fixed inset-0 z-[9999] flex items-center justify-center pointer-events-none"
 >
+  <!-- Dark Background (does NOT close the modal) -->
+  <div class="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 bg-opacity-50 pointer-events-auto"></div>
 
-  <!-- Overlay: blocks interaction and adds blur/dim -->
+  <!-- Modal Content (closes only on outside click) -->
   <div 
-    class="absolute inset-0 bg-black/30 z-40"
-    aria-hidden="true"
-  ></div>
-
-  <!-- Modal Content -->
-  <div 
-    class="relative z-50 bg-white dark:bg-gray-900 w-full max-w-lg rounded-xl shadow-lg p-6"
+    class="relative z-50 bg-white dark:bg-gray-900 w-full max-w-lg rounded-xl shadow-lg p-6 pointer-events-auto"
     @click.away="open = false"
     @keydown.escape.window="open = false"
   >
     <!-- Modal Header -->
-    <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">Order Raw Material</h2>
+    <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">Edit Product</h2>
 
     <!-- Modal Form -->
     <form @submit.prevent="submitForm()">
       @csrf
       <div class="space-y-4">
-        <!-- Name -->
+        <!-- Name Field -->
         <div>
           <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Name</label>
           <input 
             type="text" 
             id="name" 
             name="name" 
-            x-model="formData.name"
             required
+            x-model="formData.name"
             class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 text-black dark:text-white bg-white dark:bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
           >
         </div>
 
-        <!-- Quantity -->
+        <!-- Quantity Field -->
         <div>
           <label for="quantity" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Quantity</label>
           <input 
             type="number" 
             id="quantity" 
             name="quantity" 
-            x-model="formData.quantity"
             required 
             min="1"
+            x-model="formData.quantity"
             class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 text-black dark:text-white bg-white dark:bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
           >
         </div>
 
-        <!-- Message -->
+        <!-- Message Field -->
         <div>
           <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Message</label>
           <textarea 
@@ -176,7 +168,7 @@
         </div>
       </div>
 
-      <!-- Buttons -->
+      <!-- Modal Actions -->
       <div class="mt-6 flex justify-end space-x-3">
         <button 
           type="button"
@@ -185,6 +177,7 @@
         >
           Cancel
         </button>
+
         <button 
           type="submit"
           class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
@@ -196,5 +189,126 @@
   </div>
 </div>
 
+       x-transition
+       class="fixed inset-0 z-[9999] flex items-center justify-center pointer-events-none"> 
+    
+    <!-- Dark Background (doesn’t block clicks) -->
+    <div class="fixed inset-0 bg-black/30 backdrop-blur-sm z-50 bg-opacity-30 pointer-events-auto"></div>
+
+    <!-- Modal Box (blocks clicks) -->
+    <div @click.away="open = false"
+         class="relative z-10 bg-white w-full max-w-lg rounded-xl shadow-lg p-6 pointer-events-auto"
+         x-transition
+         @keydown.escape.window="open = false">
+      
+      <!-- Modal Header -->
+      <h2 class="text-xl font-semibold text-gray-800 mb-4">Submit Order Information</h2>
+
+      <!-- Form Inside Modal -->
+      <form @submit.prevent="alert('Form submitted!'); open = false;">
+        <div class="space-y-4">
+          <!-- Name Field -->
+          <div class="max-w-full mx-auto">
+            <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+            <input type="text" id="name" required
+                   class="mt-1 block w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:ring focus:ring-blue-200">
+          </div>
+
+          <!-- Email Field -->
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+            <input type="email" id="email" required
+                   class="mt-1 block w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:ring focus:ring-blue-200">
+          </div>
+        </div>
+
+        <!-- Modal Actions -->
+        <div class="mt-6 flex justify-end space-x-3">
+          <button type="button"
+                  @click="open = false"
+                  class="px-4 py-2 bg-gray-200 text-gray-800 cursor-pointer rounded-lg hover:bg-gray-300 transition">
+            Cancel
+          </button>
+
+          <button type="submit"
+                  class="px-4 py-2 bg-blue-600 text-white cursor-pointer rounded-lg hover:bg-blue-700 transition">
+            Finish
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+   
+
+
+
+
+
+
+
+  <div x-show="open==='openedit'"
+     x-transition
+     class="fixed inset-0 z-[9999] flex items-center justify-center pointer-events-none">
+    
+    <!-- Dark Background -->
+    <div class="fixed inset-0 bg-black/30 backdrop-blur-sm z-50 bg-opacity-50 pointer-events-auto"
+         @click="open = false"></div>
+
+    <!-- Modal Box -->
+    <div class="relative z-10 bg-white w-full max-w-lg rounded-xl shadow-lg p-6 pointer-events-auto"
+         x-transition
+         @keydown.escape.window="open = false"
+         @click.stop> <!-- This stops click propagation -->
+      
+      <!-- Modal Header -->
+      <h2 class="text-xl font-semibold text-gray-800 mb-4">Edit product</h2>
+
+      <!-- Form Inside Modal -->
+      <form @submit.prevent="submitForm()"> <!-- Changed to call a function -->
+        @csrf
+        <div class="space-y-4">
+          <!-- Name Field -->
+          <div class="max-w-full mx-auto">
+            <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+            <input type="text" id="name" name="name" required
+                   class="mt-1 block w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:ring focus:ring-blue-200"
+                   x-model="formData.name"> <!-- Added x-model -->
+          </div>
+
+          <!-- Quantity Field -->
+          <div>
+            <label for="quantity" class="block text-sm font-medium text-gray-700">Quantity</label>
+            <input type="number" id="quantity" name="quantity" required min="1"
+                   class="mt-1 block w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:ring focus:ring-blue-200"
+                   x-model="formData.quantity"> <!-- Added x-model -->
+          </div>
+        </div>
+        
+        <label for="message" class="block text-sm font-medium text-gray-700 mb-1 mt-4">Message</label>
+        <textarea 
+          id="message" 
+          name="message"
+          rows="4" 
+          class="resize-none w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200 text-sm text-gray-800"
+          placeholder="Enter your message..."
+          x-model="formData.message"></textarea> <!-- Added x-model -->
+
+        <!-- Modal Actions -->
+        <div class="mt-6 flex justify-end space-x-3">
+          <button type="button"
+                  @click="open = false"
+                  class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition">
+            Cancel
+          </button>
+
+          <button type="submit"
+                  class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+            Finish
+          </button>
+        </div>
+      </form>
+    </div>
+</div>
 
 </div>

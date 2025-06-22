@@ -113,12 +113,12 @@
   x-transition:leave-start="opacity-100 scale-100"
   x-transition:leave-end="opacity-0 scale-95"
   class="fixed inset-0 z-[9999] flex items-center justify-center"
-  style="backdrop-filter: blur(2px);"
+  style="backdrop-filter: blur(6px);"
 >
 
   <!-- Overlay: blocks interaction and adds blur/dim -->
   <div 
-    class="absolute inset-0 bg-black/30 z-40"
+    class="absolute inset-0 bg-black/30 backdrop-blur-sm z-40"
     aria-hidden="true"
   ></div>
 
@@ -129,7 +129,7 @@
     @keydown.escape.window="open = false"
   >
     <!-- Modal Header -->
-    <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">Order Raw Material</h2>
+    <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">Edit Product</h2>
 
     <!-- Modal Form -->
     <form @submit.prevent="submitForm()">

@@ -129,7 +129,7 @@
     @keydown.escape.window="open = false"
   >
     <!-- Modal Header -->
-    <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">Order Raw Material</h2>
+    <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">Order Raw Mat</h2>
 
     <!-- Modal Form -->
     <form @submit.prevent="submitForm()">
