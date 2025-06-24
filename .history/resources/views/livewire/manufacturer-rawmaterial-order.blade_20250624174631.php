@@ -75,7 +75,7 @@
                  'pending' => 'text-orange-400',
                  'cancelled' => 'text-red-700',
                  'confirmed' => 'text-green-700',
-                 default => 'text-blue-500'
+                 default => 'text-gray-500'
                  };
              @endphp
          <td class="px-6 py-4 {{ $statusColor }}">
@@ -91,18 +91,17 @@
              <td>
               @if($order->status == 'pending')
               <button
-              onclick="if(!confirm('Are you sure you want to cancel this order?')) return false"
-              wire:click="cancelOrder({{ $order->id }})"
-              class="bg-red-400 text-white px-4 py-2 rounded hover:bg-red-600">
-              Cancel Order
-             </button>
-          
+                  onclick="if(!confirm('Are you sure you want to cancel this order?')) return false"
+                  wire:click.prevent="cancelOrder({{ $order->id }})"
+                  class="bg-red-400 text-white px-4 py-2 cursor-pointer hover:bg-red-700 transition rounded">
+                  Cancel Order
+              </button>
               @elseif($order->status == 'confirmed') <!-- Fixed typo from 'comfirmed' -->
               <span class="text-green-700">Confirmed</span>
               @elseif($order->status == 'delivered')
-              <span class="text-blue-700">Delivered</span>
+              <span class="text-green-700">Confirmed</span>
               @else
-              <span class="text-red-500">Cancelled</span>
+              <span class="text-gray-500">Cancelled</span>
               @endif
           </td>
           </tr>

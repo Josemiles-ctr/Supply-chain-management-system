@@ -18,27 +18,21 @@ class ManufacturerRawmaterialOrder extends Component
         $this->rawmaterial_purchase_orders=RawMaterialsPurchaseOrder::with(['supplier','rawmaterial'])->latest()->get();
     }
     public function cancelOrder($id)
-{
-    $to_cancel = RawMaterialsPurchaseOrder::find($id);
-    if (!$to_cancel) {
-        dd("No order found for ID: " . $id);
-        session()->flash('error', 'Order not found.');
-        return;
-    }
-    
-    // Add validation to only cancel pending orders
-    if ($to_cancel->status !== 'pending') {
-        session()->flash('error', 'Only pending orders can be cancelled.');
-        return;
-    }
+    {
+        $to_cancel = RawMaterialsPurchaseOrder::find($id);
 
-    $to_cancel->update([
-        'status' => 'cancelled',
-    ]);
+        if ($to_cancel) {
+            $to_cancel->update([
+                'status' => 'cancelled',
+            ]);
 
-    session()->flash('success', 'Order cancelled successfully.');
-    $this->getRawmaterialPurchaseOrders(); // Refresh the data
-}
+            session()->flash('success', 'Order cancelled successfully.');
+        } else {
+            session()->flash('error', 'Cancellation Faile.');
+        }
+
+        $this->getRawmaterialPurchaseOrders();
+    }
 
     public function render()
     {

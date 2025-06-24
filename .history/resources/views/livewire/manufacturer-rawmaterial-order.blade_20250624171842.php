@@ -51,7 +51,7 @@
         </thead>
         <tbody>
           @foreach($rawmaterial_purchase_orders as $order)
-          <tr wire:key="order-{{ $order->id }}" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
             <th scope="row" class="flex items-center pl-auto py-4 text-gray-900 whitespace-nowrap dark:text-white">
                 <div class="ps-3">
                     <div class="text-base font-semibold">{{$order->rawmaterial->name}}</div>
@@ -64,24 +64,26 @@
               {{$order->quantity}}
              </td>
             <td class="px-6 py-4">
-              {{ number_format($order->total_price, 2) }}
+              {{$order->total_price}}
              </td>
              <td class="px-6 py-4">
               {{$order->order_date}}
              </td>
              {{-- Selective design for the status --}}
              @php
-             $statusColor = match($order->status) {
-                 'pending' => 'text-orange-400',
-                 'cancelled' => 'text-red-700',
-                 'confirmed' => 'text-green-700',
-                 default => 'text-blue-500'
-                 };
+             if($order->status=='pending'){
+              $design = "text-orange-400";
+             }
+             else if($order->status=='cancelled'){
+              $design = "text-red-700";
+             }
+             else{
+              $design= "text-green-700";
+             }
              @endphp
-         <td class="px-6 py-4 {{ $statusColor }}">
-             {{ ucfirst($order->status) }}
-         </td>
-         
+             <td class="px-6 py-4 {{$design}}">
+              {{$order->status}}
+             </td>
              <td class="px-6 py-4">
               {{$order->expected_delivery_date}}
              </td>
@@ -90,21 +92,16 @@
              </td>
              <td>
               @if($order->status == 'pending')
-              <button
-              onclick="if(!confirm('Are you sure you want to cancel this order?')) return false"
-              wire:click="cancelOrder({{ $order->id }})"
-              class="bg-red-400 text-white px-4 py-2 rounded hover:bg-red-600">
-              Cancel Order
-             </button>
-          
-              @elseif($order->status == 'confirmed') <!-- Fixed typo from 'comfirmed' -->
-              <span class="text-green-700">Confirmed</span>
-              @elseif($order->status == 'delivered')
-              <span class="text-blue-700">Delivered</span>
-              @else
-              <span class="text-red-500">Cancelled</span>
-              @endif
-          </td>
+                <button wire:click="cancerOrder({{$order->id}}) w class="bg-red-400 text-white px-4 py-2 cursor-pointer hover:bg-red-700 transition rounded">
+                    Cancel Order
+                </button>
+                @elseif($order->status=='comfir')
+                @else
+                        <span class="text-gray-500">Cancelled</span>
+                    @endif
+            @endif
+            
+             </td>
           </tr>
           @endforeach
         </tbody>

@@ -20,11 +20,7 @@ class ManufacturerRawmaterialOrder extends Component
     public function cancelOrder($id)
 {
     $to_cancel = RawMaterialsPurchaseOrder::find($id);
-    if (!$to_cancel) {
-        dd("No order found for ID: " . $id);
-        session()->flash('error', 'Order not found.');
-        return;
-    }
+    
     
     // Add validation to only cancel pending orders
     if ($to_cancel->status !== 'pending') {
