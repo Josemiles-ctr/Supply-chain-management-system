@@ -2,6 +2,8 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
     <head>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="//unpkg.com/alpinejs" defer></script>
+
         @include('partials.head') 
     </head>
     <body class="min-h-screen bg-white dark:bg-zinc-800">
@@ -12,14 +14,28 @@
             <flux:navlist variant="outline">
                 <flux:navlist.group :heading="__('Actions')" class="grid">
                     <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
+
+                    {{-- //Conditional Navigation items accessible to only Manufacturer and Supplier roles --}}
                     @if(Auth::User()->role=='manufacturer' || Auth::User()->role=='supplier')
                     <flux:navlist.item icon="chart-bar" :href="route('analytics')" :current="request()->routeIs('analytics')" wire:navigate>{{ __('Analytics') }}</flux:navlist.item>
                     @endif
                     <flux:navlist.item icon="chat-bubble-oval-left-ellipsis" :href="route('chat')" :current="request()->routeIs('chat')" wire:navigate>{{ __('Chat') }}</flux:navlist.item>
+                    @if(Auth::User()->role=='customer')
                     <flux:navlist.item icon="shopping-cart" :href="route('place-order')" :current="request()->routeIs('place-order')" wire:navigate>{{ __('Place Order') }}</flux:navlist.item>
+<<<<<<< HEAD
 
                     @if(Auth::User()->role=='manufacturer' || Auth::User()->role=='vendor')
                     <flux:navlist.item icon="arrow-trending-up" :href="route('inventory')" :current="request()->routeIs('inventory')" wire:navigate>{{ __('Inventory') }}</flux:navlist.item>
+=======
+                     @endif
+                    {{-- //Conditional Navigation items accessible to only manufacturer roles --}}
+                    @if(Auth::User()->role=='manufacturer')
+                    <flux:navlist.item icon="truck" :href="route('manufacturer-rawmaterials')" :current="request()->routeIs('manufacturer-rawmaterials')" wire:navigate>{{ __('Manage Rawmaterials') }}</flux:navlist.item>
+                    <flux:navlist.item icon="shopping-cart" :href="route('manufacturer-rawmaterial-orders')" :current="request()->routeIs('manufacturer-rawmaterial-orders')" wire:navigate>{{ __('Rawmaterial Orders') }}</flux:navlist.item>
+                    @endif
+                    @if(Auth::User()->role=='supplier')
+                    <flux:navlist.item icon="shopping-cart" :href="route('supplier-rawmaterial-orders')" :current="request()->routeIs('supplier-rawmaterial-orders')" wire:navigate>{{ __('Manage Orders') }}</flux:navlist.item>
+>>>>>>> b833133a781280fd6fd08ce04015aca9250c3b6d
                     @endif
                 </flux:navlist.group>
             </flux:navlist>
