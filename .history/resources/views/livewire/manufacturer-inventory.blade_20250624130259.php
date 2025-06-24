@@ -103,7 +103,7 @@
 <div class="fixed inset-0 z-[9999] flex items-center justify-center bg-black/40">
     <div class="bg-white dark:bg-gray-900 w-full max-w-lg rounded-xl shadow-lg p-4 relative max-h-[90vh] overflow-y-auto">
 
-        <h2 class="text-xl font-semibold text-gra-800 dark:text-green-500 mb-2">
+        <h2 class="text-xl font-semibold text-green-800 dark:text-gray-100 mb-2">
             Re Order {{ $rawmaterial_name }} Now
         </h2>
 
@@ -202,7 +202,8 @@
     <script>
         document.addEventListener('livewire:initialized', () => {
             Livewire.on('order-placed', (event) => {
-                alert(event.message); // Now properly accessing the message
+                alert(event.message);
+                // Or use a toast library like Toastify
             });
             
             Livewire.on('order-failed', (event) => {
@@ -210,4 +211,6 @@
             });
         });
     </script>
+</div>
+
 </div>

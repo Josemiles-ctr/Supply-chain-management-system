@@ -17,7 +17,7 @@
   <!-- Table (ALWAYS visible) -->
   <div class="relative overflow-x-auto shadow-md sm:rounded-lg px-6 z-0">
     
-    <h2 class="text-xl font-semibold mb-2 ">Raw Materials Inventory</h2>
+    <h2 class="text-xl font-semibold mb-4 ">Raw Materials Inventory</h2>
 <div class="relative overflow-x-auto rounded-lg shadow-md">
   <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
       <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -100,10 +100,11 @@
 </div>
  
 @if ($showModal)
-<div class="fixed inset-0 z-[9999] flex items-center justify-center bg-black/40">
-    <div class="bg-white dark:bg-gray-900 w-full max-w-lg rounded-xl shadow-lg p-4 relative max-h-[90vh] overflow-y-auto">
+<div class="bg-white dark:bg-gray-900 w-full max-w-lg rounded-xl shadow-lg p-6 relative max-h-[90vh] overflow-y-auto">
 
-        <h2 class="text-xl font-semibold text-gra-800 dark:text-green-500 mb-2">
+    <div class="bg-white dark:bg-gray-900 w-full max-w-lg rounded-xl shadow-lg p-6 relative">
+
+        <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">
             Re Order {{ $rawmaterial_name }} Now
         </h2>
 
@@ -199,15 +200,7 @@
         </form>
     </div>
     @endif
-    <script>
-        document.addEventListener('livewire:initialized', () => {
-            Livewire.on('order-placed', (event) => {
-                alert(event.message); // Now properly accessing the message
-            });
-            
-            Livewire.on('order-failed', (event) => {
-                alert(event.message);
-            });
-        });
-    </script>
+</div>
+
+
 </div>

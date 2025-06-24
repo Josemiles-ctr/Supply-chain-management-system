@@ -17,7 +17,7 @@
   <!-- Table (ALWAYS visible) -->
   <div class="relative overflow-x-auto shadow-md sm:rounded-lg px-6 z-0">
     
-    <h2 class="text-xl font-semibold mb-2 ">Raw Materials Inventory</h2>
+    <h2 class="text-xl font-semibold mb-4 ">Raw Materials Inventory</h2>
 <div class="relative overflow-x-auto rounded-lg shadow-md">
   <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
       <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -101,9 +101,9 @@
  
 @if ($showModal)
 <div class="fixed inset-0 z-[9999] flex items-center justify-center bg-black/40">
-    <div class="bg-white dark:bg-gray-900 w-full max-w-lg rounded-xl shadow-lg p-4 relative max-h-[90vh] overflow-y-auto">
+    <div class="bg-white dark:bg-gray-900 w-full max-w-lg rounded-xl shadow-lg p-6 relative">
 
-        <h2 class="text-xl font-semibold text-gra-800 dark:text-green-500 mb-2">
+        <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">
             Re Order {{ $rawmaterial_name }} Now
         </h2>
 
@@ -119,7 +119,7 @@
                 <div>
                     <label wire:model.defer='rawmaterial_category' name="category" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Category</label>
                     <input type="text" value="{{ $rawmaterial_category }}" readonly
-                           class="mt-1 w-full px-4 py-2 border border-gray-300 dark:border-gray-600 
+                           class="mt-1 w-full px-4 py-1 border border-gray-300 dark:border-gray-600 
                                   text-black dark:text-white bg-white dark:bg-gray-800 rounded-lg focus:ring-blue-500 focus:border-blue-500" />
                 </div>
                  <div>
@@ -128,7 +128,7 @@
                             wire:model.live="rawmaterial_quantity"
                             wire:change="calculateTotal"
                             min="1"
-                            class="mt-1 w-full px-4 py-2 border border-gray-300 dark:border-gray-600 
+                            class="mt-1 w-full px-4 py-1 border border-gray-300 dark:border-gray-600 
                                     text-black dark:text-white bg-white dark:bg-gray-800 rounded-lg focus:ring-blue-500 focus:border-blue-500" />
                      </div>
 
@@ -188,26 +188,18 @@
 
             <div class="mt-6 flex justify-end space-x-3">
                 <button type="button" wire:click="closeModal"
-                        class="px-4 py-2 bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-white rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600">
+                        class="px-4 py-1 bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-white rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600">
                     Cancel
                 </button>
                 <button type="submit"
-                        class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                        class="px-4 py-1 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
                     Finish
                 </button>
             </div>
         </form>
     </div>
     @endif
-    <script>
-        document.addEventListener('livewire:initialized', () => {
-            Livewire.on('order-placed', (event) => {
-                alert(event.message); // Now properly accessing the message
-            });
-            
-            Livewire.on('order-failed', (event) => {
-                alert(event.message);
-            });
-        });
-    </script>
+</div>
+
+
 </div>

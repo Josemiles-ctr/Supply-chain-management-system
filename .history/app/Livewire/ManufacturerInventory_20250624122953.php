@@ -4,15 +4,18 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\RawMaterial;
-
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Auth;
 use App\Models\RawMaterialsPurchaseOrder;
+=======
+>>>>>>> 80f50138c3907542b7a8fbe9eb7a7395947246f1
 
 class ManufacturerInventory extends Component
 {
     public $rawmaterials;
     public $showModal = false;
     public $selected_rawmaterial;
+<<<<<<< HEAD
     public $selected_rawmaterial_id;
     public $rawmaterial_name;
     public $rawmaterial_price;
@@ -39,11 +42,25 @@ class ManufacturerInventory extends Component
       
     ];
 }
-   public function select_rawmaterial($id)
+=======
+    public $rawmaterial_name;
+    public $rawmaterial_price;
+    public $rawmaterial_category;
+    public $rawmaterial_quantity;
+    public $rawmaterial_message;
+    
+    public function mount()
+    {
+        $this->rawmaterials = RawMaterial::with('category')->get();
+    }
+    
+>>>>>>> 80f50138c3907542b7a8fbe9eb7a7395947246f1
+    public function select_rawmaterial($id)
     {
         $raw = RawMaterial::with('category')->find($id);
     
         if ($raw) {
+<<<<<<< HEAD
             $this->selected_rawmaterial_id=$id;
             $this->selected_rawmaterial = $raw;
             $this->rawmaterial_name = $raw->name;
@@ -70,12 +87,21 @@ class ManufacturerInventory extends Component
     $price = $this->rawmaterial_price ?? 0;
     $this->total = $quantity * $price;
 }
- 
+=======
+            $this->selected_rawmaterial = $raw;
+            $this->rawmaterial_name = $raw->name;
+            $this->rawmaterial_price = $raw->price;
+            $this->rawmaterial_category = $raw->category?->name;
+            $this->showModal = true;
+        }
+    }
+>>>>>>> 80f50138c3907542b7a8fbe9eb7a7395947246f1
+    
     public function closeModal()
     {
         $this->showModal = false;
     }
-
+<<<<<<< HEAD
     public function updateStockLevel(){
         $update_level=RawMaterial::find($this->selected_rawmaterial_id);
         $new_level= (int)$update_level->current_stock + (int)$this->rawmaterial_quantity;
@@ -101,10 +127,10 @@ class ManufacturerInventory extends Component
         ]);
         $this->updateStockLevel();
         $this->reset(['rawmaterial_quantity', 'delivery_option', 'rawmaterial_message', 'unit_of_measure', 'showModal']);
-        $this->dispatch('order-placed', message: 'Order placed successfully!');
+        $this->dispatch('order-placed', message: 'Order #' . $purchase_order->id . ' placed successfully!');
         
     } catch (\Exception $e) {
-        $this->dispatch('order-failed', message : 'fOops Failed to place order. Please provide all the necessary fields. Consider Reporting if this problem persists ');
+        $this->dispatch('order-failed', message: 'Failed to place order: ' . $e->getMessage());
     }
 }
   

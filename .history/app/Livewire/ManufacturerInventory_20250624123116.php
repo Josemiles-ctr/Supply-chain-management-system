@@ -4,9 +4,11 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\RawMaterial;
-
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Auth;
 use App\Models\RawMaterialsPurchaseOrder;
+=======
+>>>>>>> 80f50138c3907542b7a8fbe9eb7a7395947246f1
 
 class ManufacturerInventory extends Component
 {
@@ -101,10 +103,10 @@ class ManufacturerInventory extends Component
         ]);
         $this->updateStockLevel();
         $this->reset(['rawmaterial_quantity', 'delivery_option', 'rawmaterial_message', 'unit_of_measure', 'showModal']);
-        $this->dispatch('order-placed', message: 'Order placed successfully!');
+        $this->dispatch('order-placed', message: 'Order #' . $purchase_order->id . ' placed successfully!');
         
     } catch (\Exception $e) {
-        $this->dispatch('order-failed', message : 'fOops Failed to place order. Please provide all the necessary fields. Consider Reporting if this problem persists ');
+        $this->dispatch('order-failed', message: 'Failed to place order: ' . $e->getMessage());
     }
 }
   

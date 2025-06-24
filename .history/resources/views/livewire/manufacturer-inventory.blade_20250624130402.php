@@ -202,7 +202,8 @@
     <script>
         document.addEventListener('livewire:initialized', () => {
             Livewire.on('order-placed', (event) => {
-                alert(event.message); // Now properly accessing the message
+                alert(event.message);
+                // Or use a toast library like Toastify
             });
             
             Livewire.on('order-failed', (event) => {
@@ -210,4 +211,6 @@
             });
         });
     </script>
+</div>
+
 </div>

@@ -101,10 +101,10 @@ class ManufacturerInventory extends Component
         ]);
         $this->updateStockLevel();
         $this->reset(['rawmaterial_quantity', 'delivery_option', 'rawmaterial_message', 'unit_of_measure', 'showModal']);
-        $this->dispatch('order-placed', message: 'Order placed successfully!');
+        $this->dispatch('order-placed placed successfully!');
         
     } catch (\Exception $e) {
-        $this->dispatch('order-failed', message : 'fOops Failed to place order. Please provide all the necessary fields. Consider Reporting if this problem persists ');
+        $this->dispatch('Oops Failed to place order. Pleaseproide all the neessary fields. Consider Reporting if this prb ');
     }
 }
   

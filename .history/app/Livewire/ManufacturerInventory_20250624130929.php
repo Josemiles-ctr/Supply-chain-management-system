@@ -104,7 +104,7 @@ class ManufacturerInventory extends Component
         $this->dispatch('order-placed', message: 'Order placed successfully!');
         
     } catch (\Exception $e) {
-        $this->dispatch('order-failed', message : 'fOops Failed to place order. Please provide all the necessary fields. Consider Reporting if this problem persists ');
+        $this->dispatch('Oops Failed to place order. Please proide all the neessary fields. Consider Reporting if this problem persists ');
     }
 }
   
