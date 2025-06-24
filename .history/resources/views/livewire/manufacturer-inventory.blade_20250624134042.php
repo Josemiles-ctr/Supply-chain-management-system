@@ -124,7 +124,7 @@
                                   text-black dark:text-white bg-white dark:bg-gray-800 rounded-lg focus:ring-blue-500 focus:border-blue-500" />
                 </div>
                  <div>
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Qunatyity at $ {{$rawmaterial_price}} per each</label>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Qunatyity at $ {{$rawmaterial_price}} per ea</label>
                     <input type="number"
                             wire:model.live="rawmaterial_quantity"
                             wire:change="calculateTotal"

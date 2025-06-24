@@ -101,9 +101,15 @@
  
 @if ($showModal)
 <div class="fixed inset-0 z-[9999] flex items-center justify-center bg-black/40">
+<<<<<<< HEAD
     <div class="bg-white dark:bg-gray-900 w-full max-w-lg rounded-xl shadow-lg p-4 relative max-h-[90vh] overflow-y-auto">
 
         <h2 class="text-xl font-semibold text-gra-800 dark:text-green-500 mb-2">
+=======
+    <div class="bg-white dark:bg-gray-900 w-full max-w-lg rounded-xl shadow-lg p-6 relative">
+
+        <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">
+>>>>>>> 80f50138c3907542b7a8fbe9eb7a7395947246f1
             Re Order {{ $rawmaterial_name }} Now
         </h2>
 
@@ -112,7 +118,7 @@
             <div class="space-y-4">
                 <div>
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Name</label>
-
+<<<<<<< HEAD
                     <input name="name" type="text" wire:model.defer='rawmaterial_name' value="{{$rawmaterial_name}}" readonly
                            class="mt-1 w-full px-4 py-2 border border-gray-300 dark:border-gray-600 
                                   text-black dark:text-white bg-white dark:bg-gray-800 rounded-lg focus:ring-blue-500 focus:border-blue-500" />
@@ -124,7 +130,7 @@
                                   text-black dark:text-white bg-white dark:bg-gray-800 rounded-lg focus:ring-blue-500 focus:border-blue-500" />
                 </div>
                  <div>
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Qunatyity at $ {{$rawmaterial_price}} per each</label>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Qunatyity at $ {{$rawmaterial_price}} per {{$unit_of_measure}}</label>
                     <input type="number"
                             wire:model.live="rawmaterial_quantity"
                             wire:change="calculateTotal"
@@ -178,12 +184,26 @@
               
                  
 
+=======
+                    <input type="text" value="{{ $rawmaterial_name }}" readonly
+                           class="mt-1 w-full px-4 py-2 border border-gray-300 dark:border-gray-600 
+                                  text-black dark:text-white bg-white dark:bg-gray-800 rounded-lg focus:ring-blue-500 focus:border-blue-500" />
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Quantity</label>
+                    <input type="number" wire:model.defer="rawmaterial_quantity" min="1"
+                           class="mt-1 w-full px-4 py-2 border border-gray-300 dark:border-gray-600 
+                                  text-black dark:text-white bg-white dark:bg-gray-800 rounded-lg focus:ring-blue-500 focus:border-blue-500" />
+                </div>
+
+>>>>>>> 80f50138c3907542b7a8fbe9eb7a7395947246f1
                 <div>
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Message</label>
                     <textarea wire:model.defer="rawmaterial_message" rows="4"
                               class="mt-1 w-full px-4 py-2 border border-gray-300 dark:border-gray-600 
                                      text-gray-800 dark:text-white bg-white dark:bg-gray-800 resize-none rounded-md focus:ring-blue-500 focus:border-blue-500 text-sm"
-
+<<<<<<< HEAD
                               placeholder="Leave a note..."></textarea>
                 </div>
             </div>
