@@ -101,9 +101,11 @@
  
 @if ($showModal)
 <div class="fixed inset-0 z-[9999] flex items-center justify-center bg-black/40">
+<<<<<<< HEAD
     <div class="bg-white dark:bg-gray-900 w-full max-w-lg rounded-xl shadow-lg p-4 relative max-h-[90vh] overflow-y-auto">
 
         <h2 class="text-xl font-semibold text-gra-800 dark:text-green-500 mb-2">
+
             Re Order {{ $rawmaterial_name }} Now
         </h2>
 

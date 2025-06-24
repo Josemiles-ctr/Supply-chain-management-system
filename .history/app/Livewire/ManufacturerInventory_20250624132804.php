@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\RawMaterial;
+
 use Illuminate\Support\Facades\Auth;
 use App\Models\RawMaterialsPurchaseOrder;
 class ManufacturerInventory extends Component
@@ -103,7 +104,7 @@ class ManufacturerInventory extends Component
         $this->dispatch('order-placed', message: 'Order placed successfully!');
         
     } catch (\Exception $e) {
-        $this->dispatch('order-failed', message : 'Oops Failed to place order. Please provide all the necessary fields. Consider Reporting if this problem persists ');
+        $this->dispatch('order-failed', message : 'fOops Failed to place order. Please provide all the necessary fields. Consider Reporting if this problem persists ');
     }
 }
 
