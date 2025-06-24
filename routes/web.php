@@ -3,12 +3,14 @@
 use App\Livewire\Chat;
 use App\Livewire\Analytics;
 use App\Livewire\PlaceOrder;
-use App\Livewire\ManageInventory;
+use App\Livewire\InventoryManagement;
 use App\Livewire\Settings\Profile;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Appearance;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\InventoryController;
+
+//use App\Http\Controllers\InventoryController;
+//use App\Livewire\Inventory;
 
 Route::get('/', function () {
     return view('getstarted');
@@ -20,8 +22,10 @@ Route::get('/welcome', function () {
 })->name('home');
 
 Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
+   ->middleware(['auth', 'verified'])
     ->name('dashboard');
+
+    
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
@@ -32,6 +36,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard/chat', Chat::class)->name('chat');
     Route::get('/dashboard/analytics', Analytics::class)->name('analytics');
     Route::get('/dashboard/place-order', PlaceOrder::class)->name('place-order');
-    Route::get('/dashboard/inventory', ManageInventory::class)->name('inventory');
+    Route::get('/dashboard/inventory', InventoryManagement::class)->name('inventory');
 });
 require __DIR__.'/auth.php';
