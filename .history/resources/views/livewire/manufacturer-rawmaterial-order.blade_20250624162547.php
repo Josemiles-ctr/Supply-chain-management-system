@@ -72,14 +72,9 @@
              {{-- Selective design for the status --}}
              @php
              if($order->status=='pending'){
-              $design = "text-orange-400";
+              $design = "text-green-700";
              }
-             else if($order->status=='cancelled'){
-              $design = "text-red-700";
-             }
-             else{
-              $design= "text-green-700";
-             }
+             else if($order->stat)
              @endphp
              <td class="px-6 py-4 {{$design}}">
               {{$order->status}}

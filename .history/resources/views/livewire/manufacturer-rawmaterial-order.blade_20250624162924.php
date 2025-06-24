@@ -78,7 +78,7 @@
               $design = "text-red-700";
              }
              else{
-              $design= "text-green-700";
+              $design= ""
              }
              @endphp
              <td class="px-6 py-4 {{$design}}">
