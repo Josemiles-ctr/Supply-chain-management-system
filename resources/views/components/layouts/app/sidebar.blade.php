@@ -22,6 +22,11 @@
                     <flux:navlist.item icon="chat-bubble-oval-left-ellipsis" :href="route('chat')" :current="request()->routeIs('chat')" wire:navigate>{{ __('Chat') }}</flux:navlist.item>
                     @if(Auth::User()->role=='customer')
                     <flux:navlist.item icon="shopping-cart" :href="route('place-order')" :current="request()->routeIs('place-order')" wire:navigate>{{ __('Place Order') }}</flux:navlist.item>
+<<<<<<< HEAD
+
+                    @if(Auth::User()->role=='manufacturer' || Auth::User()->role=='vendor')
+                    <flux:navlist.item icon="arrow-trending-up" :href="route('inventory')" :current="request()->routeIs('inventory')" wire:navigate>{{ __('Inventory') }}</flux:navlist.item>
+=======
                      @endif
                     {{-- //Conditional Navigation items accessible to only manufacturer roles --}}
                     @if(Auth::User()->role=='manufacturer')
@@ -30,6 +35,7 @@
                     @endif
                     @if(Auth::User()->role=='supplier')
                     <flux:navlist.item icon="shopping-cart" :href="route('supplier-rawmaterial-orders')" :current="request()->routeIs('supplier-rawmaterial-orders')" wire:navigate>{{ __('Manage Orders') }}</flux:navlist.item>
+>>>>>>> b833133a781280fd6fd08ce04015aca9250c3b6d
                     @endif
                 </flux:navlist.group>
             </flux:navlist>
