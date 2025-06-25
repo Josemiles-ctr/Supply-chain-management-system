@@ -101,7 +101,7 @@
  
 @if ($showModal)
 <div class="fixed inset-0 z-[9999] flex items-center justify-center bg-black/40">
-
+<<<<<<< HEAD
     <div class="bg-white dark:bg-gray-900 w-full max-w-lg rounded-xl shadow-lg p-4 relative max-h-[90vh] overflow-y-auto">
 
         <h2 class="text-xl font-semibold text-gra-800 dark:text-green-500 mb-2">
@@ -124,7 +124,7 @@
                                   text-black dark:text-white bg-white dark:bg-gray-800 rounded-lg focus:ring-blue-500 focus:border-blue-500" />
                 </div>
                  <div>
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Qunatyity at $ {{$rawmaterial_price}} per each</label>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Qunatyity at $ {{$rawmaterial_price}} per {{$unit_of_measure}}</label>
                     <input type="number"
                             wire:model.live="rawmaterial_quantity"
                             wire:change="calculateTotal"

@@ -13,6 +13,7 @@ class ManufacturerInventory extends Component
     public $rawmaterials;
     public $showModal = false;
     public $selected_rawmaterial;
+
     public $selected_rawmaterial_id;
     public $rawmaterial_name;
     public $rawmaterial_price;
@@ -40,6 +41,7 @@ class ManufacturerInventory extends Component
     ];
 }
    public function select_rawmaterial($id)
+
     {
         $raw = RawMaterial::with('category')->find($id);
     
@@ -106,7 +108,7 @@ class ManufacturerInventory extends Component
         $this->dispatch('order-placed', message: 'Order placed successfully!');
         
     } catch (\Exception $e) {
-        $this->dispatch('order-failed', message : 'Oops Failed to place order. Please provide all the necessary fields. Consider Reporting if this problem persists ');
+        $this->dispatch('order-failed', message : 'fOops Failed to place order. Please provide all the necessary fields. Consider Reporting if this problem persists ');
     }
 }
 
