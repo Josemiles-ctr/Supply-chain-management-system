@@ -30,6 +30,7 @@
                     @endif
                     @if(Auth::User()->role=='supplier')
                     <flux:navlist.item icon="shopping-cart" :href="route('supplier-rawmaterial-orders')" :current="request()->routeIs('supplier-rawmaterial-orders')" wire:navigate>{{ __('Manage Orders') }}</flux:navlist.item>
+>>>>>>> b833133a781280fd6fd08ce04015aca9250c3b6d
                     @endif
                 </flux:navlist.group>
             </flux:navlist>

@@ -10,7 +10,6 @@ use App\Livewire\RawmaterialOrders;
 use App\Livewire\Settings\Appearance;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\ManufacturerInventory;
-use App\Livewire\ManufacturerRawmaterialOrder;
 
 //use App\Http\Controllers\InventoryController;
 //use App\Livewire\Inventory;
@@ -41,6 +40,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard/place-order', PlaceOrder::class)->name('place-order');
     Route::get('/dashboard/inventory', InventoryManagement::class)->name('inventory');
     Route::get('/dashboard/manufacturer-rawmaterials', ManufacturerInventory::class)->name('manufacturer-rawmaterials');
-    Route::get('/dashboard/manufacturer-rawmaterial-orders', ManufacturerRawmaterialOrder::class)->name('manufacturer-rawmaterial-orders');
+    Route::get('/dashboard/manufacturer-rawmaterial-orders', ManufacturerRawmaterialOrders::class)->name('rawmaterial-orders');
 });
 require __DIR__.'/auth.php';
