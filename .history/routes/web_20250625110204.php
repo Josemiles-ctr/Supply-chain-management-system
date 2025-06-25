@@ -3,14 +3,12 @@
 use App\Livewire\Chat;
 use App\Livewire\Analytics;
 use App\Livewire\PlaceOrder;
-use App\Livewire\Settings\Profile;
-use App\Livewire\Settings\Password;
 use App\Livewire\InventoryManagement;
+use App\Livewire\Settings\Profile;
 use App\Livewire\RawmaterialOrders;  
+use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Appearance;
 use Illuminate\Support\Facades\Route;
-use App\Livewire\ManufacturerInventory;
-use App\Livewire\ManufacturerRawmaterialOrder;
 
 //use App\Http\Controllers\InventoryController;
 //use App\Livewire\Inventory;
