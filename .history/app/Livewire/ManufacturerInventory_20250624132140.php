@@ -13,7 +13,6 @@ class ManufacturerInventory extends Component
     public $rawmaterials;
     public $showModal = false;
     public $selected_rawmaterial;
-<<<<<<< HEAD
     public $selected_rawmaterial_id;
     public $rawmaterial_name;
     public $rawmaterial_price;
@@ -46,7 +45,6 @@ class ManufacturerInventory extends Component
         $raw = RawMaterial::with('category')->find($id);
     
         if ($raw) {
-<<<<<<< HEAD
             $this->selected_rawmaterial_id=$id;
             $this->selected_rawmaterial = $raw;
             $this->rawmaterial_name = $raw->name;
@@ -73,22 +71,10 @@ class ManufacturerInventory extends Component
     $price = $this->rawmaterial_price ?? 0;
     $this->total = $quantity * $price;
 }
- 
-=======
-            $this->selected_rawmaterial = $raw;
-            $this->rawmaterial_name = $raw->name;
-            $this->rawmaterial_price = $raw->price;
-            $this->rawmaterial_category = $raw->category?->name;
-            $this->showModal = true;
-        }
-    }
-    
->>>>>>> 80f50138c3907542b7a8fbe9eb7a7395947246f1
     public function closeModal()
     {
         $this->showModal = false;
     }
-<<<<<<< HEAD
 
     public function updateStockLevel(){
         $update_level=RawMaterial::find($this->selected_rawmaterial_id);
@@ -121,18 +107,7 @@ class ManufacturerInventory extends Component
         $this->dispatch('order-failed', message : 'fOops Failed to place order. Please provide all the necessary fields. Consider Reporting if this problem persists ');
     }
 }
-  
-=======
-    
-    public function placeOrder()
-    {
-        // You can store the order here
-    
-        $this->reset(['rawmaterial_quantity', 'rawmaterial_message', 'showModal']);
-        session()->flash('success', 'Order placed successfully.');
-    }
-    
->>>>>>> 80f50138c3907542b7a8fbe9eb7a7395947246f1
+
     public function render()
     {
         return view('livewire.manufacturer-inventory');
