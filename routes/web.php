@@ -38,5 +38,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard/analytics', Analytics::class)->name('analytics');
     Route::get('/dashboard/place-order', PlaceOrder::class)->name('place-order');
     Route::get('/dashboard/inventory', InventoryManagement::class)->name('inventory');
+    
 });
 require __DIR__.'/auth.php';
