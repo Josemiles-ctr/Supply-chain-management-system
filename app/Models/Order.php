@@ -22,7 +22,7 @@ class Order extends Model
 
     public function customer()
     {
-        return $this->belongsTo(Customer::class);
+        return $this->belongsTo(User::class,'User_id');
     }
 
     public function manufacturer()
@@ -38,7 +38,7 @@ class Order extends Model
 
 public function vendor()
 {
-    return $this->belongsTo(Vendor::class);
+    return $this->belongsTo(User::class,'User_id');
 }
     public function items()
     {

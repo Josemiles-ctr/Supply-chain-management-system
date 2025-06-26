@@ -9,7 +9,7 @@ use App\Models\OrderItem;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\NewOrderNotification;
 use App\Models\User;
-use App\Models\Customer;
+
 
 class Checkout extends Component
 {
@@ -65,15 +65,13 @@ class Checkout extends Component
         return;
     }
 
-    $user = Auth::user();
-    if (!$user) {
-        session()->flash('error', 'You must be logged in.');
+    
 
 
 
 // Create the order
 $order = Order::create([
-    'customer_id' => $customer->id,
+    'role' => $customer,
     'manufacturer_id' => 32, // or get from logic
     'status' => 'pending',
     'order_date' => now(),

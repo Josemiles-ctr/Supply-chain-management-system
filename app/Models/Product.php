@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\User as ModelsUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User;
 
 class Product extends Model
 {
@@ -25,7 +27,10 @@ class Product extends Model
 
     public function vendor()
     {
-        return $this->belongsTo(Vendor::class);
+        return $this->belongsTo(User::class,'User_id');
+    }
+    public function manufacture(){
+        return $this->belongsTo(User::class,'User_id',);
     }
 
     // A product can belong to many orders through order items
