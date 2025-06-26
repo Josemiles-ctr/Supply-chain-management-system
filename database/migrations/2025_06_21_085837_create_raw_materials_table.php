@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('supplier_id');
             $table->foreign('supplier_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('raw_material_categories')->onDelete('cascade');
             $table->integer('current_stock')->default(0);
             $table->integer('reorder_level')->default(50);
             $table->enum('unit_of_measure', ['kg', 'g', 'liter', 'meter','piece'])->default('kg'); // Default unit of measure

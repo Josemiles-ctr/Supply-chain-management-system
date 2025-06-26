@@ -2,6 +2,7 @@
     title="Inventory Management"
     description="Manage your inventory items and monitor stock levels"
 >
+
     @php
         $role = auth()->user()->role;
     @endphp

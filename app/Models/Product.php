@@ -10,16 +10,14 @@ class Product extends Model
     use HasFactory;
     protected $fillable = [
         'name',
+        'category',
         'color',
         'size',
         'price',
-        'order_id',
-        'vendor_id',
-        'inventory_id',
         'production_cost',
         'current_stock',
         'unit_of_measure',
-        'reorder_level',
+        'reorder_point',
     ];
 
     public function inventory()
