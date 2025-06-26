@@ -68,17 +68,9 @@ class Checkout extends Component
     $user = Auth::user();
     if (!$user) {
         session()->flash('error', 'You must be logged in.');
-        return;
-    }
 
-// Get the Customer using user_id
-$customer = Customer::where('user_id', $user->id)->first();
 
-if (!$customer) {
-    session()->flash('error', 'Customer profile not found.');
-    return;
-}
-   
+
 // Create the order
 $order = Order::create([
     'customer_id' => $customer->id,
