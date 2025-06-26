@@ -8,18 +8,31 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'price', 'order_id', 'vendor_id', 'inventory_id'];
+
+    protected $fillable = [
+        'name', 
+        'price', 
+        'vendor_id',    // Optional, can be null
+        'inventory_id'  // Optional, can be null
+    ];
+
+    // Relationships
 
     public function inventory()
     {
         return $this->belongsTo(Inventory::class);
     }
+
     public function vendor()
     {
         return $this->belongsTo(Vendor::class);
     }
-    public function order()
+
+    // A product can belong to many orders through order items
+    public function orders()
     {
-        return $this->belongsTo(Order::class);
+        return $this->belongsToMany(Order::class, 'order_items')
+                    ->withPivot('quantity', 'price')
+                    ->withTimestamps();
     }
 }

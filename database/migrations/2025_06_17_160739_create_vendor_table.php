@@ -11,20 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('vendor', function (Blueprint $table) {
-            $table->id(); // VendorId
-            $table->string('name'); // Name
-            $table->string('contact_info'); // ContactInfo
-            $table->string('password'); // Password (should be hashed)
-            $table->timestamps();
+        Schema::create('vendors', function (Blueprint $table) {
+    $table->id();
+    $table->unsignedBigInteger('user_id')->nullable();  // <-- remove ->after('id')
+    $table->string('name');
+    $table->string('contact_info');
+    $table->string('password');
+    $table->timestamps();
+
+    $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
-
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('vendor');
+        Schema::dropIfExists('vendors');
     }
-};
+};  

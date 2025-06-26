@@ -16,8 +16,13 @@
                     <flux:navlist.item icon="chart-bar" :href="route('analytics')" :current="request()->routeIs('analytics')" wire:navigate>{{ __('Analytics') }}</flux:navlist.item>
                     @endif
                     <flux:navlist.item icon="chat-bubble-oval-left-ellipsis" :href="route('chat')" :current="request()->routeIs('chat')" wire:navigate>{{ __('Chat') }}</flux:navlist.item>
+                   @if(Auth::User()->role=='customer')
                     <flux:navlist.item icon="shopping-cart" :href="route('place-order')" :current="request()->routeIs('place-order')" wire:navigate>{{ __('Place Order') }}</flux:navlist.item>
-
+                    @endif
+                    @if(Auth::User()->role=='manufacturer')
+                    <flux:navlist.item icon="shopping-cart" :href="route('orders-to-manufacturer')" :current="request()->routeIs('orders-to-manufacturer')" wire:navigate>{{ __('orders') }}</flux:navlist.item>
+                    @endif
+                    
 
                 </flux:navlist.group>
             </flux:navlist>

@@ -6,20 +6,16 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('orders', function (Blueprint $table) {
-            
-            $table->id(); // OrderId
-            $table->date('order_date'); // OrderDate
-            $table->string('status'); // Status
-            $table->unsignedBigInteger('customer_id'); // CustomerId (FK)
-            $table->string('attribute')->nullable(); // Attribute
-            $table->unsignedBigInteger('manufacturer_id'); // ManufacturerId (FK)
-            $table->string('password'); // Password
+            $table->id(); // Order ID
+            $table->date('order_date');
+            $table->string('status');
+            $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('manufacturer_id');
+            $table->string('attribute')->nullable(); // Optional field
+
             $table->timestamps();
 
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
@@ -27,11 +23,8 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('order');
+        Schema::dropIfExists('orders'); // Correct table name
     }
 };

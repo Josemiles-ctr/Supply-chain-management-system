@@ -46,9 +46,9 @@
                 <tbody>
                     @forelse($recentOrders ?? [] as $order)
                         <tr>
-                            <td>{{ $order->id }}</td>
-                            <td>{{ $order->order_date }}</td>
-                            <td>{{ $order->status }}</td>
+                            <td>{{ is_object($order) ? $order->id : '' }}</td>
+                            <td>{{ is_object($order) ? $order->order_date : '' }}</td>
+                            <td>{{ is_object($order) ? $order->status : '' }}</td>
                         </tr>
                     @empty
                         <tr><td colspan="3">No recent orders.</td></tr>
@@ -56,6 +56,7 @@
                 </tbody>
             </table>
         </div>
+        
     </div>
 </div>
 @endsection
