@@ -58,8 +58,9 @@ class Checkout extends Component
         return $total;
     }
 
-    public function placeOrder()
+public function placeOrder()
 {
+    $user = Auth::user();
     if (empty($this->cart)) {
         session()->flash('error', 'Your cart is empty.');
         return;
@@ -71,34 +72,43 @@ class Checkout extends Component
 
 // Create the order
 $order = Order::create([
-    'role' => $customer,
-    'manufacturer_id' => 32, // or get from logic
+    'user_id' => $user->id,
     'status' => 'pending',
     'order_date' => now(),
 ]);
 
     // Add order items
-    foreach ($this->cart as $productId => $quantity) {
-        $product = Product::find($productId);
-        if ($product) {
-            OrderItem::create([
-                'order_id' => $order->id,
-                'product_id' => $productId,
-                'quantity' => $quantity,
-                'price' => $product->price,
-                'order_date' => now(),
-            ]);
-            
+$manufacturerId = null;
+foreach ($this->cart as $productId => $quantity) {
+    $product = Product::find($productId);
+    if ($product) {
+        OrderItem::create([
+            'order_id' => $order->id,
+            'product_id' => $productId,
+            'quantity' => $quantity,
+            'price' => $product->price,
+            'order_date' => now(),
+        ]);
+        // Set manufacturerId from the first product found
+        if (is_null($manufacturerId)) {
+            $manufacturerId = $product->user_id;
         }
     }
+}
 
-    // Load customer and item details for notification
-    $order->load('customer', 'items.product');
+// Load customer and item details for notification
+$order->load('user', 'items.product');
 
-    // Notify manufacturer (user)
-    if ($order->manufacturer) {
-        $order->manufacturer->notify(new NewOrderNotification($order));
+// Notify manufacturer (user)
+if ($manufacturerId) {
+    $manufacturer = User::find($manufacturerId);
+    if ($manufacturer && $manufacturer->role =='manufacturer') {
+        // Load customer and item details for notification
+          $order->load('user', 'items.product');
+
+        $manufacturer->notify(new NewOrderNotification($order));
     }
+}
 
     // Clear cart
     session()->forget('cart');
@@ -107,6 +117,7 @@ $order = Order::create([
     session()->flash('success', 'Order placed successfully!');
    // return redirect()->to('/checkout');
 }
+
 
     public function render()
     {

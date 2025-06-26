@@ -11,8 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('orders', function (Blueprint $table) {
-         $table->string('payment_method')->nullable(); // e.g. 'cash', 'mobile_money'
+        Schema::table('orders', function (Blueprint $table) {        
         $table->string('payment_status')->default('unpaid'); // 'unpaid', 'paid'   //
         });
     }

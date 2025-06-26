@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('orders', function (Blueprint $table) {
-           $table->unsignedBigInteger('customer_id')->nullable()->change();  //
-        });
+      Schema::dropIfExists('customers');
+      Schema::dropIfExists('vendors')  ;
+      Schema::dropIfExists('manufacturers');//
     }
 
     /**
@@ -21,8 +21,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('orders', function (Blueprint $table) {
-            $table->unsignedBigInteger('customer_id')->nullable(false)->change();  //
-        });
+        //
     }
 };
