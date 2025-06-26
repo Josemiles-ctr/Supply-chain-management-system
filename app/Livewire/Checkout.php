@@ -10,11 +10,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Notifications\NewOrderNotification;
 use App\Models\User;
 
-
 class Checkout extends Component
 {
     public $cart = [];
-
 
     public function mount()
     {
@@ -58,70 +56,64 @@ class Checkout extends Component
         return $total;
     }
 
-public function placeOrder()
-{
-    $user = Auth::user();
-    if (empty($this->cart)) {
-        session()->flash('error', 'Your cart is empty.');
-        return;
-    }
+    public function placeOrder()
+    {
+        if (empty($this->cart)) {
+            session()->flash('error', 'Your cart is empty.');
+            return;
+        }
 
-    
+        $user = Auth::user();
 
-
-
-// Create the order
-$order = Order::create([
-    'user_id' => $user->id,
-    'status' => 'pending',
-    'order_date' => now(),
-]);
-
-    // Add order items
-$manufacturerId = null;
-foreach ($this->cart as $productId => $quantity) {
-    $product = Product::find($productId);
-    if ($product) {
-        OrderItem::create([
-            'order_id' => $order->id,
-            'product_id' => $productId,
-            'quantity' => $quantity,
-            'price' => $product->price,
+        // Create the order
+        $order = Order::create([
+            'user_id' => $user->id,
+            'status' => 'pending',
             'order_date' => now(),
         ]);
-        // Set manufacturerId from the first product found
-        if (is_null($manufacturerId)) {
-            $manufacturerId = $product->user_id;
+
+        $manufacturerId = null;
+
+        // Add items to order
+        foreach ($this->cart as $productId => $quantity) {
+            $product = Product::find($productId);
+            if ($product) {
+                OrderItem::create([
+                    'order_id' => $order->id,
+                    'product_id' => $productId,
+                    'quantity' => $quantity,
+                    'price' => $product->price,
+                    'order_date' => now(),
+                ]);
+
+                // Set manufacturerId from the first product
+                if (is_null($manufacturerId)) {
+                    $manufacturerId = $product->user_id;
+                }
+            }
         }
+
+        // Load relationships for the notification
+        $order->load('user', 'orderitems.product');
+
+        // Notify the manufacturer
+        if ($manufacturerId) {
+            $manufacturer = User::find($manufacturerId);
+            if ($manufacturer && $manufacturer->role === 'manufacturer') {
+                $manufacturer->notify(new NewOrderNotification($order));
+            }
+        }
+
+        // Clear cart
+        session()->forget('cart');
+        $this->cart = [];
+
+        session()->flash('success', 'Order placed successfully!');
     }
-}
-
-// Load customer and item details for notification
-$order->load('user', 'items.product');
-
-// Notify manufacturer (user)
-if ($manufacturerId) {
-    $manufacturer = User::find($manufacturerId);
-    if ($manufacturer && $manufacturer->role =='manufacturer') {
-        // Load customer and item details for notification
-          $order->load('user', 'items.product');
-
-        $manufacturer->notify(new NewOrderNotification($order));
-    }
-}
-
-    // Clear cart
-    session()->forget('cart');
-    $this->cart = [];
-
-    session()->flash('success', 'Order placed successfully!');
-   // return redirect()->to('/checkout');
-}
-
 
     public function render()
     {
-        return view('livewire.checkout', [      
+        return view('livewire.checkout', [
             'cart' => $this->cart,
             'totalPrice' => $this->totalPrice,
         ]);

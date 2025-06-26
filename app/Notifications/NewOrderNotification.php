@@ -15,12 +15,13 @@ class NewOrderNotification extends Notification
 
     public function __construct(Order $order)
     {
-        $this->order = $order->loadMissing('items.product', 'customer.user', 'vendor.user');
+        // Load relationships needed for notification
+        $this->order = $order->loadMissing('orderitems.product', 'user');
     }
 
     protected function formatOrderItems(): array
     {
-        return $this->order->items->map(function ($item) {
+        return $this->order->orderitems->map(function ($item) {
             $product = $item->product;
             $price = $item->price ?? ($product->price ?? 0);
 
@@ -40,19 +41,13 @@ class NewOrderNotification extends Notification
 
     public function toDatabase(object $notifiable): DatabaseMessage
     {
-        $buyerName = 'Unknown';
-
-        if ($this->order->vendor && $this->order->vendor->user) {
-            $buyerName = $this->order->vendor->user->name;
-        } elseif ($this->order->customer && $this->order->customer->user) {
-            $buyerName = $this->order->customer->user->name;
-        }
+        $buyerName = $this->order->user->name ?? 'Unknown Customer';
 
         $items = $this->formatOrderItems();
         $overallTotal = array_sum(array_column($items, 'total_price'));
 
         return new DatabaseMessage([
-            'message'             => 'A new order has been placed by a customer',
+            'message'             => 'A new order has been placed.',
             'buyer_name'          => $buyerName,
             'items'               => $items,
             'order_id'            => $this->order->id,
@@ -62,9 +57,9 @@ class NewOrderNotification extends Notification
 
     public function toArray($notifiable): array
     {
-        // Return only summary if needed in app UI (optional)
         return [
             'order_id' => $this->order->id,
+            'buyer_name' => $this->order->user->name ?? 'Unknown Customer',
         ];
     }
 }

@@ -24,6 +24,9 @@ class Product extends Model
     {
         return $this->belongsTo(Inventory::class);
     }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 
     public function vendor()
     {

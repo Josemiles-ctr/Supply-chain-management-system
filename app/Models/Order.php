@@ -2,9 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\OrderItem;
-use App\Models\Customer;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,34 +10,24 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
-        'order_date',
+        'user_id',       // The customer who placed the order
         'status',
-        'customer_id',
-        'manufacturer_id',
-        
+        'order_date',
+        'payment_status', // Optional: if you track payment
     ];
 
-    public function customer()
+    /**
+     * The customer who placed the order.
+     */
+    public function user()
     {
-        return $this->belongsTo(User::class,'User_id');
+        return $this->belongsTo(User::class);
     }
 
-    public function manufacturer()
-    {
-        return $this->belongsTo(User::class, 'manufacturer_id');
-    }
-
-    // Remove this if using order_items for products
-    // public function product()
-    // {
-    //     return $this->belongsTo(Product::class);
-    // }
-
-public function vendor()
-{
-    return $this->belongsTo(User::class,'User_id');
-}
-    public function items()
+    /**
+     * The items included in this order.
+     */
+    public function orderitems()
     {
         return $this->hasMany(OrderItem::class);
     }

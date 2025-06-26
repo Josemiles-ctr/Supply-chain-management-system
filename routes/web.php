@@ -43,7 +43,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard/checkout', Checkout::class)->name('checkout');
 
     // Manufacturer: view incoming orders
-    Route::get('/manufacturer/orders', OrdersToManufacturer::class)->name('orders-to-manufacturer');
+    Route::get('dashboard/orders', OrdersToManufacturer::class)->name('orders-to-manufacturer');
 });
 
 require __DIR__.'/auth.php';

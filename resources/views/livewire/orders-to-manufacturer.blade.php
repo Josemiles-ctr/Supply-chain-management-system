@@ -24,7 +24,7 @@
                             <th class="p-3 border-b text-center">Quantity</th>
                             <th class="p-3 border-b text-left">Status</th>
                             <th class="p-3 border-b text-left">Action</th>
-                           <th class="p-3 border-b text-left">Payment Status</th>
+                            <th class="p-3 border-b text-left">Payment Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -32,12 +32,12 @@
                             <tr wire:key="order-{{ $order->id }}" class="border-b hover:bg-gray-50">
                                 <td class="p-3 align-top font-medium">{{ $order->id }}</td>
                                 <td class="p-3 align-top">
-                                    @foreach ($order->items as $item)
+                                    @foreach ($order->orderitems as $item)
                                         <div>{{ $item->product->name ?? 'N/A' }}</div>
                                     @endforeach
                                 </td>
                                 <td class="p-3 text-center align-top">
-                                    @foreach ($order->items as $item)
+                                    @foreach ($order->orderitems as $item)
                                         <div>{{ $item->quantity }}</div>
                                     @endforeach
                                 </td>
@@ -68,56 +68,57 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5" class="text-center p-6 text-gray-600">No orders found.</td>
+                                <td colspan="6" class="text-center p-6 text-gray-600">No orders found.</td>
                             </tr>
                         @endforelse
                     </tbody>
                 </table>
 
-              <!-- Notifications -->
-<div>
-    <h3 class="text-lg font-semibold mb-3 text-gray-800">Notifications</h3>
+                <!-- Notifications -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-3 text-gray-800">Notifications</h3>
 
-    @forelse ($notifications as $notification)
-        <div class="p-4 bg-yellow-100 rounded shadow flex justify-between items-start mb-3">
-            <div>
-                <strong class="block text-yellow-800">
-                    {{ $notification->data['message'] ?? 'Notification' }}
-                </strong>
+                    @forelse ($notifications as $notification)
+                        <div class="p-4 bg-yellow-100 rounded shadow flex justify-between items-start mb-3">
+                            <div>
+                                <strong class="block text-yellow-800">
+                                    {{ $notification->data['message'] ?? 'Notification' }}
+                                </strong>
 
-                <small class="block">Buyer: {{ $notification->data['buyer_name'] ?? 'Unknown' }}</small>
+                                <small class="block">Buyer: {{ $notification->data['buyer_name'] ?? 'Unknown' }}</small>
 
-                @if (!empty($notification->data['items']) && is_array($notification->data['items']))
-                    <ul class="list-disc list-inside text-sm text-gray-700 mt-2">
-                        @foreach ($notification->data['items'] as $item)
-                            <li>
-                                {{ $item['product_name'] ?? 'N/A' }} –
-                                Qty: {{ $item['quantity'] }},
-                                Price: ${{ number_format($item['price_per_item'] ?? 0, 2) }},
-                                Total: ${{ number_format($item['total_price'] ?? 0, 2) }}
-                            </li>
-                        @endforeach
-                    </ul>
+                                @if (!empty($notification->data['items']) && is_array($notification->data['items']))
+                                    <ul class="list-disc list-inside text-sm text-gray-700 mt-2">
+                                        @foreach ($notification->data['items'] as $item)
+                                            <li>
+                                                {{ $item['product_name'] ?? 'N/A' }} –
+                                                Qty: {{ $item['quantity'] }},
+                                                Price: ${{ number_format($item['price_per_item'] ?? 0, 2) }},
+                                                Total: ${{ number_format($item['total_price'] ?? 0, 2) }}
+                                            </li>
+                                        @endforeach
+                                    </ul>
 
-                    <p class="mt-2 text-sm text-gray-800 font-semibold">
-                        Overall Total: ${{ number_format($notification->data['overall_total_price'] ?? 0, 2) }}
-                    </p>
-                @endif
+                                    <p class="mt-2 text-sm text-gray-800 font-semibold">
+                                        Overall Total: ${{ number_format($notification->data['overall_total_price'] ?? 0, 2) }}
+                                    </p>
+                                @endif
 
-                <small class="text-xs text-gray-500 block mt-1">
-                    Sent {{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}
-                </small>
+                                <small class="text-xs text-gray-500 block mt-1">
+                                    Sent {{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}
+                                </small>
+                            </div>
+
+                            <button wire:click="markNotificationAsRead('{{ $notification->id }}')"
+                                    class="ml-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+                                Mark as Read
+                            </button>
+                        </div>
+                    @empty
+                        <p class="text-gray-600">No new notifications.</p>
+                    @endforelse
+                </div>
             </div>
-
-            <button wire:click="markNotificationAsRead('{{ $notification->id }}')"
-                    class="ml-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
-                Mark as Read
-            </button>
-        </div>
-    @empty
-        <p class="text-gray-600">No new notifications.</p>
-    @endforelse
-</div>
         </div>
     </x-layouts.dashboard-component-heading>
 </div>
