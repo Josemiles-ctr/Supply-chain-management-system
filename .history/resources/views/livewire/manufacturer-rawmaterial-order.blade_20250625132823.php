@@ -63,7 +63,7 @@
                 {{$order->quantity}}
             </td>
             <td class="px-6 py-4">
-             $ {{$order->total_price}}
+             ${{$order->total_price}}
           </td>
               <td class="px-6 py-4">
                   {{$order->order_date}}

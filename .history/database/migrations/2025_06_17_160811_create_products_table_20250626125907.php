@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('reorder_level')->default(50); // Minimum stock level before reorder
             $table->enum('unit_of_measure', ['pcs', 'boxes'])->default('pcs'); // Current stock of the product
 
+            // Foreign key constraints
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->foreign('vendor_id')->references('id')->on('users')->onDelete('cascade'); // assumes vendors are users
         });
