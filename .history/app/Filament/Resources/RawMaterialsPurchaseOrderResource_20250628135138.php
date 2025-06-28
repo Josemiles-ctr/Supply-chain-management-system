@@ -87,7 +87,7 @@ public static function shouldRegisterNavigation(): bool
                     ->sortable(),
                 Tables\Columns\TextColumn::make('supplier.name')
                     ->sortable()
-                    ->visible(fn ($record) => Auth::user()?->role == 'manufacturer'),
+                    ->,
                 Tables\Columns\TextColumn::make('quantity')
                     ->numeric()
                     ->sortable(),

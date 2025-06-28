@@ -2,20 +2,19 @@
 
 namespace App\Filament\Resources\RawMaterialsPurchaseOrderResource\Pages;
 
-use Filament\Actions;
-use Illuminate\Support\Facades\Auth;
-use Filament\Resources\Pages\ViewRecord;
 use App\Filament\Resources\RawMaterialsPurchaseOrderResource;
+use Filament\Actions;
+use Filament\Resources\Pages\EditRecord;
 
-class ViewRawMaterialsPurchaseOrder extends ViewRecord
+class EditRawMaterialsPurchaseOrder extends EditRecord
 {
     protected static string $resource = RawMaterialsPurchaseOrderResource::class;
 
     protected function getHeaderActions(): array
     {
         return [
-            Actions\EditAction::make()
-            ->visible(fn ($record) => $record->status == 'pending' && Auth::user()?->role == 'manufacturer'),
+            Actions\ViewAction::make(),
+            Actions\DeleteAction::make()-,
         ];
     }
 }

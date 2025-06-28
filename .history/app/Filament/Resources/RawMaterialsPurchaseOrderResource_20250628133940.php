@@ -35,11 +35,11 @@ class RawMaterialsPurchaseOrderResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
     public static function canViewAny(): bool
 {
-    return Auth::user()?->role == 'manufacturer' || Auth::user()?->role == 'supplier';
+    return Auth::user()?->role === 'manufacturer' || Auth::user()?->role === 'supplier';
 }
 public static function shouldRegisterNavigation(): bool
 {
-    return Auth::user()?->role === 'manufacturer' || Auth::user()?->role === 'supplier';
+    return Auth::user()?->role === 'manufacturer';
 }
 
     public static function form(Form $form): Form
@@ -86,8 +86,7 @@ public static function shouldRegisterNavigation(): bool
                     ->label('Raw Material')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('supplier.name')
-                    ->sortable()
-                    ->visible(fn ($record) => Auth::user()?->role == 'manufacturer'),
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('quantity')
                     ->numeric()
                     ->sortable(),
@@ -164,9 +163,9 @@ public static function shouldRegisterNavigation(): bool
                     ->send();
                 })
                 ->visible(fn ($record) => $record->status == 'pending' && Auth::User()->role == 'supplier'),
-                ViewAction::make(),
-                EditAction::make()
-                ->visible(fn ($record) => Auth::user()?->role === 'manufacturer'),
+                ViewAction::make()
+                ->visible(fn ($record) => Auth::user()?->role === 'manufacturer') ,
+                EditAction::make(),
                 
             ])
             ->bulkActions([

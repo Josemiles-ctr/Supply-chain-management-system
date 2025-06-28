@@ -86,8 +86,7 @@ public static function shouldRegisterNavigation(): bool
                     ->label('Raw Material')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('supplier.name')
-                    ->sortable()
-                    ->visible(fn ($record) => Auth::user()?->role == 'manufacturer'),
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('quantity')
                     ->numeric()
                     ->sortable(),

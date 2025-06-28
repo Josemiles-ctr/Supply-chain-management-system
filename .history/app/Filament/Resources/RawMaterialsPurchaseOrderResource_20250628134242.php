@@ -39,7 +39,7 @@ class RawMaterialsPurchaseOrderResource extends Resource
 }
 public static function shouldRegisterNavigation(): bool
 {
-    return Auth::user()?->role === 'manufacturer' || Auth::user()?->role === 'supplier';
+    return Auth::user()?->role === 'manufacturer';
 }
 
     public static function form(Form $form): Form
@@ -86,8 +86,7 @@ public static function shouldRegisterNavigation(): bool
                     ->label('Raw Material')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('supplier.name')
-                    ->sortable()
-                    ->visible(fn ($record) => Auth::user()?->role == 'manufacturer'),
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('quantity')
                     ->numeric()
                     ->sortable(),
