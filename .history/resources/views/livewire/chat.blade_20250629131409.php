@@ -100,18 +100,13 @@
             </div>
         @else
             <div class="p-4 space-y-2">
-                
+                @php
+                   if($message->sender_id === Auth::id()) {
+                   }
+                @endphp
                 @foreach($messages as $message)
                     <div class="flex {{ $message->sender_id === Auth::id() ? 'justify-end' : 'justify-start' }}">
-                        <div 
-                            @if($message->sender_id === Auth::id())
-                            class="max-w-xs px-4 py-2 rounded-2xl shadow"
-                            style="background-color: steelblue !important; color: white !important; border-radius: 5px !important; padding: 0.5rem 1rem !important; font-size: 0.875rem !important; font-weight: 600 !important;"
-                            @else
-                            style="background-color: #1a7a06 !important; color: white !important; border-radius: 5px !important; padding: 0.5rem 1rem !important; font-size: 0.875rem !important; font-weight: 600 !important;"
-                                class="max-w-xs px-4 py-2 rounded-2xl shadow bg-blue-600 text-white dark:bg-blue-700"
-                            @endif
-                        >
+                        <div class="max-w-xs px-4 py-2 rounded-2xl shadow {{ $message->sender_id === Auth::id() ? 'bg-gray-500 text-white dark:bg-gray-700' : 'bg-blue-600 text-white dark:bg-blue-700' }}">
                             {{ $message->message }}
                             <span class="text-gray-400 dark:text-gray-300 text-xs block mt-1">
                                 {{ $message->created_at->diffForHumans() }}

@@ -62,6 +62,7 @@
                            'vendor' => 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300',
                            'supplier' => 'bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300',
                        ];
+                       if
                    @endphp
                        <span class="text-xs font-semibold px-2 py-0.5 rounded-full shadow-sm
                            {{ $roleStyles[$user->role] ?? 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300' }}">
@@ -103,15 +104,7 @@
                 
                 @foreach($messages as $message)
                     <div class="flex {{ $message->sender_id === Auth::id() ? 'justify-end' : 'justify-start' }}">
-                        <div 
-                            @if($message->sender_id === Auth::id())
-                            class="max-w-xs px-4 py-2 rounded-2xl shadow"
-                            style="background-color: steelblue !important; color: white !important; border-radius: 5px !important; padding: 0.5rem 1rem !important; font-size: 0.875rem !important; font-weight: 600 !important;"
-                            @else
-                            style="background-color: #1a7a06 !important; color: white !important; border-radius: 5px !important; padding: 0.5rem 1rem !important; font-size: 0.875rem !important; font-weight: 600 !important;"
-                                class="max-w-xs px-4 py-2 rounded-2xl shadow bg-blue-600 text-white dark:bg-blue-700"
-                            @endif
-                        >
+                        <div class="max-w-xs px-4 py-2 rounded-2xl shadow {{ $message->sender_id === Auth::id() ? 'bg-gray-500 text-white dark:bg-gray-700' : 'bg-blue-600 text-white dark:bg-blue-700' }}">
                             {{ $message->message }}
                             <span class="text-gray-400 dark:text-gray-300 text-xs block mt-1">
                                 {{ $message->created_at->diffForHumans() }}

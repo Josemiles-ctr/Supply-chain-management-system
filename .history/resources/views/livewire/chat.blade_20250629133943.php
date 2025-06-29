@@ -105,10 +105,9 @@
                     <div class="flex {{ $message->sender_id === Auth::id() ? 'justify-end' : 'justify-start' }}">
                         <div 
                             @if($message->sender_id === Auth::id())
-                            class="max-w-xs px-4 py-2 rounded-2xl shadow"
-                            style="background-color: steelblue !important; color: white !important; border-radius: 5px !important; padding: 0.5rem 1rem !important; font-size: 0.875rem !important; font-weight: 600 !important;"
+                                style="background-color: #1a7a06 !important; color: white !important; border-radius: 2rem !important; padding: 0.5rem 1rem !important; font-size: 0.875rem !important; font-weight: 600 !important;"
+                                class="max-w-xs px-4 py-2 rounded-2xl shadow"
                             @else
-                            style="background-color: #1a7a06 !important; color: white !important; border-radius: 5px !important; padding: 0.5rem 1rem !important; font-size: 0.875rem !important; font-weight: 600 !important;"
                                 class="max-w-xs px-4 py-2 rounded-2xl shadow bg-blue-600 text-white dark:bg-blue-700"
                             @endif
                         >
