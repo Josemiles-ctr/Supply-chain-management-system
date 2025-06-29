@@ -41,7 +41,7 @@
                     <div wire:click='selectUser({{ $user->id }})' class="p-3 cursor-pointer hover:bg-blue-100 dark:hover:bg-gray-700 transition 
                         {{ $selectedUser->id === $user->id ? 'bg-blue-200 dark:bg-gray-700' : '' }}">
                     <div class="flex items-center justify-center text-gray-800 dark:text-gray-200">
-                        <div style=":hover: background-color: #f0f0f0;" class="flex items-center gap-3 justify-start w-full">
+                        <div style="hover" class="flex items-center gap-3 justify-start w-full">
                             <span class="inline-flex items-center justify-center rounded-full border-2 border-[#84c1dd] bg-white dark:bg-gray-900 shadow" style="aspect-ratio:1/1; width:2.25rem; min-width:2.25rem; max-width:100%;">
                                <svg class="w-full h-full p-1.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
