@@ -5,6 +5,8 @@ use App\Livewire\Analytics;
 use App\Livewire\PlaceOrder;
 use App\Livewire\Settings\Profile;
 use App\Livewire\Settings\Password;
+use App\Livewire\Settings\Profile;
+use App\Livewire\Settings\Password;
 use App\Livewire\InventoryManagement;
 use App\Livewire\RawmaterialOrders;  
 use App\Livewire\Settings\Appearance;
