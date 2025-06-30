@@ -54,10 +54,10 @@ class Chat extends Component
     }
     public function newChatMessageNotification($message)
     {
-        if($message['sender_id'] == $this->selectedUser->id) {
-            $messageObj= ChatMessage::find($message['id']);
-            $this->messages->push($messageObj);
+        if($event['sender_id'] == $this->selectedUser->id) {
+            return;
         }
+        $this->messages->push($event['message']);
     }
     public function selectUser($id){
         $this->selectedUser = User::find($id);

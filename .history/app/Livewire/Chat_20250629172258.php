@@ -56,7 +56,6 @@ class Chat extends Component
     {
         if($message['sender_id'] == $this->selectedUser->id) {
             $messageObj= ChatMessage::find($message['id']);
-            $this->messages->push($messageObj);
         }
     }
     public function selectUser($id){

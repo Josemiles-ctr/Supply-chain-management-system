@@ -23,13 +23,6 @@ class CreateRawMaterialsPurchaseOrder extends CreateRecord
         abort(403, 'Only manufacturers can create purchase orders.');
     }
 }
-protected function afterCreate(): void{
-    Notification::make()
-        ->title('Purchase Order Submitted')
-        ->body('Your order has been successfully created and is pending Confirmation.')
-        ->success()
-        ->send();
-}
 
 
     protected function mutateFormDataBeforeCreate(array $data): array

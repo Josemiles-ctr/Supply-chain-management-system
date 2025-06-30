@@ -26,7 +26,7 @@ class CreateRawMaterialsPurchaseOrder extends CreateRecord
 protected function afterCreate(): void{
     Notification::make()
         ->title('Purchase Order Submitted')
-        ->body('Your order has been successfully created and is pending Confirmation.')
+        ->body('Your order has been successfully created and is pending .')
         ->success()
         ->send();
 }

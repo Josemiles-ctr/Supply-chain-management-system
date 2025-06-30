@@ -19,16 +19,9 @@ class CreateRawMaterialsPurchaseOrder extends CreateRecord
     public function mount(): void {
     parent::mount();
 
-    if (Auth::User()->role !== 'manufacturer') {
+    if ( Auth::User()->role !== 'manufacturer') {
         abort(403, 'Only manufacturers can create purchase orders.');
     }
-}
-protected function afterCreate(): void{
-    Notification::make()
-        ->title('Purchase Order Submitted')
-        ->body('Your order has been successfully created and is pending Confirmation.')
-        ->success()
-        ->send();
 }
 
 

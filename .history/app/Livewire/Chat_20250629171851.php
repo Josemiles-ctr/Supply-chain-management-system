@@ -49,15 +49,8 @@ class Chat extends Component
     }
     public function getListeners(){
         return [
-            "echo-private:chat.{$this->loginId},MessageSent" => 'newChatMessageNotification',
+            "echo-private:chat.{$this->s},MessageSent" => 'loadMessages',
         ];
-    }
-    public function newChatMessageNotification($message)
-    {
-        if($message['sender_id'] == $this->selectedUser->id) {
-            $messageObj= ChatMessage::find($message['id']);
-            $this->messages->push($messageObj);
-        }
     }
     public function selectUser($id){
         $this->selectedUser = User::find($id);

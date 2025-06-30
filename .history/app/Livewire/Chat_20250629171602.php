@@ -16,12 +16,13 @@ class Chat extends Component
     public $messages;
     public $loginId;
     public function mount() 
-    {   $this->loginId= Auth::id();
+    {   
         if(Auth::User()->role =='customer' || Auth::User()->role =='vendor' || Auth::User()->role =='supplier'){
-            $this->users = User::where('role', 'manufacturer')->whereNot('id', Auth::id())->get() ?? [];
-        } else{
-            $this->users=User::whereNot('role', 'manufacturer')->get() ?? [];
-        }
+        
+        $this->users = User::where('role', 'manufacturer')->whereNot('id', Auth::id())->get() ?? [];
+    } else{
+        $this->users=User::whereNot('role', 'manufacturer')->get() ?? [];
+    }
       if($this->users->isEmpty()) {
             $this->selectedUser = null;
             
@@ -46,18 +47,6 @@ class Chat extends Component
         $this->messages->push($message);
         $this->newMessage = '';
         broadcast(new MessageSent($message))->toOthers();
-    }
-    public function getListeners(){
-        return [
-            "echo-private:chat.{$this->loginId},MessageSent" => 'newChatMessageNotification',
-        ];
-    }
-    public function newChatMessageNotification($message)
-    {
-        if($message['sender_id'] == $this->selectedUser->id) {
-            $messageObj= ChatMessage::find($message['id']);
-            $this->messages->push($messageObj);
-        }
     }
     public function selectUser($id){
         $this->selectedUser = User::find($id);
