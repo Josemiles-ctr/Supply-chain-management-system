@@ -160,7 +160,7 @@ class RawMaterialsPurchaseOrderResource extends Resource
                 Tables\Columns\TextColumn::make('price_per_unit')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('current_stock')
+                Tables\Columns\TextColumn::make('urrent_stock')
                      ->numeric()
                      ->sortable()
                          
