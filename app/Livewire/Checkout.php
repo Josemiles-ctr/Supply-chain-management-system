@@ -118,4 +118,4 @@ class Checkout extends Component
             'totalPrice' => $this->totalPrice,
         ]);
     }
-}
+} 
