@@ -10,15 +10,17 @@ use Illuminate\Foundation\Auth\User;
 class Product extends Model
 {
     use HasFactory;
-
     protected $fillable = [
-        'name', 
-        'price', 
-        'vendor_id',    // Optional, can be null
-        'inventory_id'  // Optional, can be null
+        'name',
+        'category',
+        'color',
+        'size',
+        'price',
+        'production_cost',
+        'current_stock',
+        'unit_of_measure',
+        'reorder_point',
     ];
-
-    // Relationships
 
     public function inventory()
     {

@@ -12,8 +12,20 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->decimal('price', 10, 2);
+
+            $table->enum('size', ['XS','S','M','L','XL','XXL'])->default('M');
+            $table->decimal('production_cost', 10, 2)->nullable(); // Optional
+            $table->string('category');
+
             $table->unsignedBigInteger('inventory_id')->nullable(); // optional inventory relation
             $table->timestamps();
+            $table->integer('current_stock')->default(0); 
+            $table->integer('reorder_point')->default(50); // Minimum stock level before reorder
+            $table->enum('unit_of_measure', ['pcs', 'boxes'])->default('pcs'); // Current stock of the product
+
+
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
+          
 
             // foreign key for inventory 
             $table->foreign('inventory_id')->references('id')->on('inventory')->onDelete('set null');

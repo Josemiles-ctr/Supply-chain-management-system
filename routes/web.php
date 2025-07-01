@@ -5,13 +5,18 @@ use App\Http\Controllers\InventoryController;
 
 use App\Livewire\Chat;
 use App\Livewire\Analytics;
-use App\Livewire\ManageInventory;
+use App\Livewire\PlaceOrder;
 use App\Livewire\Settings\Profile;
 use App\Livewire\Settings\Password;
+use App\Livewire\InventoryManagement;
+use App\Livewire\RawmaterialOrders;  
 use App\Livewire\Settings\Appearance;
-use App\Livewire\OrdersToManufacturer;
-use App\Livewire\PlaceOrder;
-use App\Livewire\Checkout;
+use Illuminate\Support\Facades\Route;
+use App\Livewire\ManufacturerInventory;
+use App\Livewire\ManufacturerRawmaterialOrder;
+
+//use App\Http\Controllers\InventoryController;
+//use App\Livewire\Inventory;
 
 Route::get('/', function () {
     return view('getstarted');
@@ -21,7 +26,12 @@ Route::get('/welcome', function () {
     return view('welcome');
 })->name('home');
 
-// Protected routes for authenticated users
+Route::view('dashboard', 'dashboard')
+   ->middleware(['auth', 'verified'])
+    ->name('dashboard');
+
+    
+
 Route::middleware(['auth'])->group(function () {
 
     // Dashboard pages
@@ -36,14 +46,12 @@ Route::middleware(['auth'])->group(function () {
     // Functional pages
     Route::get('/dashboard/chat', Chat::class)->name('chat');
     Route::get('/dashboard/analytics', Analytics::class)->name('analytics');
-    Route::get('/dashboard/inventory', ManageInventory::class)->name('inventory');
-    
-    // Customer-only: Place and checkout orders
     Route::get('/dashboard/place-order', PlaceOrder::class)->name('place-order');
-    Route::get('/dashboard/checkout', Checkout::class)->name('checkout');
+    Route::get('/dashboard/inventory', InventoryManagement::class)->name('inventory');
+    Route::get('/dashboard/manufacturer-rawmaterials', ManufacturerInventory::class)->name('manufacturer-rawmaterials');
+    Route::get('/dashboard/manufacturer-rawmaterial-orders', ManufacturerRawmaterialOrder::class)->name('manufacturer-rawmaterial-orders');
 
-    // Manufacturer: view incoming orders
-    Route::get('dashboard/orders', OrdersToManufacturer::class)->name('orders-to-manufacturer');
+    
 });
 
 require __DIR__.'/auth.php';

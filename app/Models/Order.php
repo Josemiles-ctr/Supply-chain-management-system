@@ -8,27 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
+    protected $fillable = ['order_date', 'status', 'customer_id', 'attribute', 'manufacturer_id', 'password'];
 
-    protected $fillable = [
-        'user_id',       // The customer who placed the order
-        'status',
-        'order_date',
-        'payment_status', // Optional: if you track payment
-    ];
-
-    /**
-     * The customer who placed the order.
-     */
-    public function user()
+    public function customer()
     {
         return $this->belongsTo(User::class);
     }
-
-    /**
-     * The items included in this order.
-     */
-    public function orderitems()
+    public function manufacturer()
     {
-        return $this->hasMany(OrderItem::class);
+        return $this->belongsTo(User::class);
     }
+    // public function products()
+    // {
+    //     return $this->hasMany(Product::class);
+    // }
 }
