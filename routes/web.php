@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\InventoryController;
+
 use App\Livewire\Chat;
 use App\Livewire\Analytics;
 use App\Livewire\PlaceOrder;
@@ -19,7 +22,6 @@ Route::get('/', function () {
     return view('getstarted');
 })->name('getstarted');
 
-
 Route::get('/welcome', function () {
     return view('welcome');
 })->name('home');
@@ -31,11 +33,17 @@ Route::view('dashboard', 'dashboard')
     
 
 Route::middleware(['auth'])->group(function () {
-    Route::redirect('settings', 'settings/profile');
 
+    // Dashboard pages
+    Route::view('dashboard', 'dashboard')->name('dashboard');
+
+    // Settings
+    Route::redirect('settings', 'settings/profile');
     Route::get('settings/profile', Profile::class)->name('settings.profile');
     Route::get('settings/password', Password::class)->name('settings.password');
     Route::get('settings/appearance', Appearance::class)->name('settings.appearance');
+
+    // Functional pages
     Route::get('/dashboard/chat', Chat::class)->name('chat');
     Route::get('/dashboard/analytics', Analytics::class)->name('analytics');
     Route::get('/dashboard/place-order', PlaceOrder::class)->name('place-order');
@@ -45,4 +53,5 @@ Route::middleware(['auth'])->group(function () {
 
     
 });
+
 require __DIR__.'/auth.php';

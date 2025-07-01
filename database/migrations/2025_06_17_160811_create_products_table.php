@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('products', function (Blueprint $table) {
@@ -20,6 +17,7 @@ return new class extends Migration
             $table->decimal('production_cost', 10, 2)->nullable(); // Optional
             $table->string('category');
 
+            $table->unsignedBigInteger('inventory_id')->nullable(); // optional inventory relation
             $table->timestamps();
             $table->integer('current_stock')->default(0); 
             $table->integer('reorder_point')->default(50); // Minimum stock level before reorder
@@ -29,12 +27,11 @@ return new class extends Migration
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
           
 
+            // foreign key for inventory 
+            $table->foreign('inventory_id')->references('id')->on('inventory')->onDelete('set null');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('products');

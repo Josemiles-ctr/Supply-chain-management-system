@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('customers', function (Blueprint $table) {
-           $table->id(); // CustomerId
-            $table->string('name'); // Name
-            $table->string('email')->unique(); // Email
-            $table->string('password'); // Password (should be hashed)
-            $table->timestamps();
+        Schema::table('products', function (Blueprint $table) {
+          $table->foreignId('user_id')->constrained()->OnDelete('cascade'); //
         });
     }
 
@@ -25,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('customer');
+        Schema::table('products', function (Blueprint $table) {
+            //
+        });
     }
 };

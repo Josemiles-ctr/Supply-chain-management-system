@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\User as ModelsUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User;
 
 class Product extends Model
 {
@@ -24,12 +26,23 @@ class Product extends Model
     {
         return $this->belongsTo(Inventory::class);
     }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
     public function vendor()
     {
-        return $this->belongsTo(Vendor::class);
+        return $this->belongsTo(User::class,'User_id');
     }
-    public function order()
+    public function manufacture(){
+        return $this->belongsTo(User::class,'User_id',);
+    }
+
+    // A product can belong to many orders through order items
+    public function orders()
     {
-        return $this->belongsTo(Order::class);
+        return $this->belongsToMany(Order::class, 'order_items')
+                    ->withPivot('quantity', 'price')
+                    ->withTimestamps();
     }
 }
