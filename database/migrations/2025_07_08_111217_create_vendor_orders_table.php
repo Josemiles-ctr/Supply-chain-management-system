@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->enum('status',['pending','confirmed','delivered','cancelled',])->default('pending');
             $table->foreignId('created_by')->constrained('users')->onDelete('cascade');
-            $table->enum('delivery_option',['delivery','pickup'])->default('pickup');
+            $table->enum('delivery_option',['delivery','express','pickup'])->default('pickup');
             $table->decimal('total', 10, 2);
             $table->dateTime('order_date')->nullable();
             $table->dateTime('expected_fulfillment')->nullable();

@@ -36,7 +36,7 @@ class MonthlyOrdersLineChart extends ChartWidget
             
             $labels[] = now()->subMonths($i)->format('M Y');
             $orderCounts[] = $monthData ? $monthData->order_count : 0;
-            $revenues[] = $monthData ? round($monthData->revenue / 1000) : 0; // Convert to thousands
+            $expenditures[] = $monthData ? round($monthData->revenue / 1000) : 0; // Convert to thousands
         }
 
         return [

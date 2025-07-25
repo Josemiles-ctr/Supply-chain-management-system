@@ -33,21 +33,21 @@ class VendorStatsOverview extends BaseWidget
             ->orderByDesc('total_quantity')
             ->first();
 
-        // Calculate monthly revenue
-        $monthlyRevenue = VendorOrder::where('created_at', '>=', now()->startOfMonth())
+        // Calculate monthly expenditure
+        $monthlyExpenditure = VendorOrder::where('created_at', '>=', now()->startOfMonth())
             ->sum('total');
-        $lastMonthRevenue = VendorOrder::whereBetween('created_at', [
+        $lastMonthExpenditure = VendorOrder::whereBetween('created_at', [
             now()->subMonth()->startOfMonth(),
             now()->subMonth()->endOfMonth()
         ])->sum('total');
-        $revenueChange = $lastMonthRevenue > 0 
-            ? round((($monthlyRevenue - $lastMonthRevenue) / $lastMonthRevenue) * 100)
+        $expenditureChange = $lastMonthExpenditure > 0 
+            ? round((($monthlyExpenditure - $lastMonthExpenditure) / $lastMonthExpenditure) * 100)
             : 0;
 
         // Calculate order fulfillment rate
         $totalOrders = VendorOrder::where('created_at', '>=', now()->subDays(30))->count();
         $fulfilledOrders = VendorOrder::where('created_at', '>=', now()->subDays(30))
-            ->where('status', 'completed')
+            ->where('status', 'delivered')
             ->count();
         $fulfillmentRate = $totalOrders > 0 ? round(($fulfilledOrders / $totalOrders) * 100) : 0;
 
@@ -63,9 +63,9 @@ class VendorStatsOverview extends BaseWidget
                 ->icon('heroicon-o-trophy')
                 ->color('warning'),
 
-            Stat::make('Monthly Expenditure', 'UGX ' . number_format($monthlyRevenue))
-                ->description($revenueChange . '% vs last month')
-                ->descriptionIcon($revenueChange >= 0 ? 'heroicon-m-arrow-trending-up' : 'heroicon-m-arrow-trending-down')
+            Stat::make('Monthly Expenditure', 'UGX ' . number_format($monthlyExpenditure))
+                ->description($expenditureChange . '% vs last month')
+                ->descriptionIcon($expenditureChange >= 0 ? 'heroicon-m-arrow-trending-up' : 'heroicon-m-arrow-trending-down')
                 ->chart([
                     VendorOrder::where('created_at', '>=', now()->subDays(7))->sum('total'),
                     VendorOrder::where('created_at', '>=', now()->subDays(6))->sum('total'),
@@ -75,7 +75,7 @@ class VendorStatsOverview extends BaseWidget
                     VendorOrder::where('created_at', '>=', now()->subDays(2))->sum('total'),
                     VendorOrder::where('created_at', '>=', now()->subDays(1))->sum('total'),
                 ])
-                ->color($revenueChange >= 0 ? 'success' : 'danger'),
+                ->color($expenditureChange >= 0 ? 'success' : 'danger'),
 
             Stat::make('Order Fulfillment Rate', $fulfillmentRate . '%')
                 ->description($totalOrders . ' total orders this month')
